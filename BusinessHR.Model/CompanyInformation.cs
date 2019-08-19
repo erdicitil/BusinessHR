@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessHR.Model
 {
-    public class CompanyInformation
+    public class CompanyInformation:BaseEntity
     {
         public string CompanyName { get; set; }
         public string DepartmentName { get; set; }
