@@ -8,10 +8,13 @@ using System.Linq.Dynamic;
 
 namespace BusinessHR.Data
 {
-    public static IQueryable<T> Where<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate)
+    public static class EntityFrameworkExtensions
     {
-        source = source.Where("IsDeleted == false"); // From System.linq.Dynamic Library
-        source = Queryable.Where<T>(source, predicate);
-        return source;
+        public static IQueryable<T> Where<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate)
+        {
+            source = source.Where("IsDeleted == false"); // From System.linq.Dynamic Library
+            source = Queryable.Where<T>(source, predicate);
+            return source;
+        }
     }
 }
