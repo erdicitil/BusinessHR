@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusinessHR.Model
 {
-    public class Permission
-    {
-        public int Id { get; set; }
+    public class Permission:BaseEntity
+    {      
         public DateTime PermissionStartDate { get; set; }
         public DateTime PermissionEndDate { get; set; }
         public int PermissiveId { get; set; }
