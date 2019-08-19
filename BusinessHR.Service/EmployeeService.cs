@@ -25,27 +25,34 @@ namespace BusinessHR.Service
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var employee = employeeRepository.Get(id);
+            if (employee != null)
+            {
+                employeeRepository.Delete(employee);
+                unitOfWork.SaveChanges();
+            }
         }
 
         public Employee Get(Guid id)
         {
-            throw new NotImplementedException();
+            return employeeRepository.Get(id);
         }
 
         public IEnumerable<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            return employeeRepository.GetAll();
         }
 
-        public void Insert(Employee city)
+        public void Insert(Employee employee)
         {
-            throw new NotImplementedException();
+            employeeRepository.Insert(employee);
+            unitOfWork.SaveChanges();
         }
 
-        public void Update(Employee city)
+        public void Update(Employee employee)
         {
-            throw new NotImplementedException();
+            employeeRepository.Update(employee);
+            unitOfWork.SaveChanges();
         }
     }
 
@@ -53,8 +60,8 @@ namespace BusinessHR.Service
     {
         IEnumerable<Employee> GetAll();
         Employee Get(Guid id);
-        void Insert(Employee city);
-        void Update(Employee city);
+        void Insert(Employee employee);
+        void Update(Employee employee);
         void Delete(Guid id);
         bool Any(Guid id);
 
