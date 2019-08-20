@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Award.cs" />
+    <Compile Include="Certificate.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Country.cs" />
