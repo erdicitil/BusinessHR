@@ -60,8 +60,6 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Company.cs" />
-    <Compile Include="CompanyInformation.cs" />
-    <Compile Include="Country.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Gender.cs" />
@@ -69,7 +67,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs" />
+    <Compile Include="Salary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
