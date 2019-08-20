@@ -10,6 +10,7 @@ namespace BusinessHR.Model
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
         public string Photo { get; set; }
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -22,6 +23,8 @@ namespace BusinessHR.Model
         public string WorkStatus { get; set; }
         public DateTime CompanyWorkStartDate { get; set; }
         public DateTime CompanyWorkEndDate { get; set; }
+        public Guid? SalaryId { get; set; }
+        public virtual Salary Salary { get; set; }
        
        
 
