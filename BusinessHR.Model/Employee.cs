@@ -26,10 +26,13 @@ namespace BusinessHR.Model
         public string WorkStatus { get; set; }
         public DateTime CompanyWorkStartDate { get; set; }
         public DateTime CompanyWorkEndDate { get; set; }
-        public Guid? SalaryId { get; set; }
+        public Guid SalaryId { get; set; }
         public virtual Salary Salary { get; set; }
-       
-       
+
+        public Guid? PermissionId { get; set; }
+        public virtual Permission Permission { get; set; }
+
+
 
 
     }
