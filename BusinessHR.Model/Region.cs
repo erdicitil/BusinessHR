@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace BusinessHR.Model
 {
-    public class Department:BaseEntity
-    { 
+    public class Region:BaseEntity
+    {
         public string Name { get; set; }
-        public Guid CompanyId { get; set; }
-        public virtual Company Company { get; set; }
-        public virtual ICollection<Position> Positions { get; set; }
+        public Guid CityId { get; set; }
+        public virtual City City { get; set; }
+
         public virtual ICollection<Employee> Employees { get; set; }
+
+        
+        public virtual ICollection<Company> Companies { get; set; }
+        
     }
 }
+
