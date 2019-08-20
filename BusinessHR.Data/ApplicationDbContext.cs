@@ -19,12 +19,20 @@ namespace BusinessHR.Data
         {
             return new ApplicationDbContext();
         }
+        public virtual DbSet<Award> Awards { get; set; }
+        public virtual DbSet<Certificate> Certificates { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<PermissionType> PermissionTypes { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Salary> Salaries { get; set; }
 
-        
+
+
     }
 }
