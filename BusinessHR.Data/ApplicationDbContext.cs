@@ -1,4 +1,5 @@
-﻿using BusinessHR.Model;
+﻿using BusinessHR.Data.Builders;
+using BusinessHR.Model;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,21 @@ namespace BusinessHR.Data
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Salary> Salaries { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new CertificateBuilder(modelBuilder.Entity<Certificate>());
+            new CityBuilder(modelBuilder.Entity<City>());
+            new CompanyBuilder(modelBuilder.Entity<Company>());
+            new CountryBuilder(modelBuilder.Entity<Country>());
+            new DepartmentBuilder(modelBuilder.Entity<Department>());
+            new EmployeeBuilder(modelBuilder.Entity<Employee>());
+            new PermissionBuilder(modelBuilder.Entity<Permission>());
+            new PermissionTypeBuilder(modelBuilder.Entity<PermissionType>());
+            new PositionBuilder(modelBuilder.Entity<Position>());
+            new RegionBuilder(modelBuilder.Entity<Region>());
+            new SalaryBuilder(modelBuilder.Entity<Salary>());
+        }
 
 
     }
