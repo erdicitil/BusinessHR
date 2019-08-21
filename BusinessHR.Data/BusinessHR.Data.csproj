@@ -66,6 +66,9 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Builders\CertificateBuilder.cs" />
     <Compile Include="Builders\CityBuilder.cs" />
+    <Compile Include="Builders\CompanyBuilder.cs" />
+    <Compile Include="Builders\CountryBuilder.cs" />
+    <Compile Include="Builders\DepartmentBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />

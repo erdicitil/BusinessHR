@@ -13,11 +13,11 @@ namespace BusinessHR.Model
         public string Address { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
         public Guid CountryId { get; set; }
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
 
         public Guid CityId { get; set; }
-        public City City { get; set; }
+        public virtual City City { get; set; }
         public Guid RegionId { get; set; }
-        public Region Region { get; set; }
+        public virtual Region Region { get; set; }
     }
 }
