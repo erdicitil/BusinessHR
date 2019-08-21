@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessHR.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,12 +7,16 @@ using System.Web;
 
 namespace BusinessHR.Admin.Models
 {
-    public class CertificateViewModel
+    public class RegionViewModel
     {
         public Guid Id { get; set; }
-        [Display(Name = "Sertifika Adı")]
-        [MaxLength(150)]
         [Required]
+        [MaxLength(50)]
+        [Display(Name = "İlçe Adı")]
         public string Name { get; set; }
+        [MaxLength(50)]
+        [Display(Name = "Şehir Adı")]
+        public Guid CityId { get; set; }
+        
     }
 }

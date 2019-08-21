@@ -6,12 +6,12 @@ using System.Web;
 
 namespace BusinessHR.Admin.Models
 {
-    public class CertificateViewModel
+    public class PermissionTypeViewModel
     {
         public Guid Id { get; set; }
-        [Display(Name = "Sertifika Adı")]
-        [MaxLength(150)]
         [Required]
+        [MaxLength(50)]
+        [Display(Name = "İzin Türü")]
         public string Name { get; set; }
     }
 }
