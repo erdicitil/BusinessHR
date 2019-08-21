@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Builders\CertificateBuilder.cs" />
+    <Compile Include="Builders\CityBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />

@@ -19,7 +19,7 @@ namespace BusinessHR.Data
         {
             return new ApplicationDbContext();
         }
-        public virtual DbSet<Award> Awards { get; set; }
+       
         public virtual DbSet<Certificate> Certificates { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
