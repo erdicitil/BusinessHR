@@ -30,8 +30,7 @@ namespace BusinessHR.Model
         public virtual Salary Salary { get; set; }
         public Guid? CertificateId { get; set; }
         public virtual Certificate Certificate { get; set; }
-        public Guid? AwardId { get; set; }
-        public virtual Award Award { get; set; }
+       
        
        
 

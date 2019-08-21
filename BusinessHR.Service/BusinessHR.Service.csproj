@@ -44,11 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CertificateService.cs" />
     <Compile Include="CityService.cs" />
     <Compile Include="CompanyService.cs" />
+    <Compile Include="CountryService.cs" />
     <Compile Include="DepartmentService.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="PermissionService.cs" />
+    <Compile Include="PermissionTypeService.cs" />
+    <Compile Include="PositionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionService.cs" />
     <Compile Include="SalaryService.cs" />
