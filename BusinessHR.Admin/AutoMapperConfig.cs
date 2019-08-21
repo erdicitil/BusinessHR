@@ -7,5 +7,8 @@ namespace BusinessHR.Admin
 {
     public class AutoMapperConfig
     {
+        public void Initialize()
+        {
+        }
     }
 }

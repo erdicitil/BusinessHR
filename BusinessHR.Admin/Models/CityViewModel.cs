@@ -22,4 +22,3 @@ namespace BusinessHR.Admin.Models
         public string CountryName { get; set; }
     }
 }
-}
