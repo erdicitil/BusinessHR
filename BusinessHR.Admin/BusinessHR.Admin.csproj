@@ -198,6 +198,11 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CertificateViewModel.cs" />
+    <Compile Include="Models\CityViewModel.cs" />
+    <Compile Include="Models\CompanyViewModel.cs" />
+    <Compile Include="Models\CountryViewModel.cs" />
+    <Compile Include="Models\DeparmentViewModel.cs" />
+    <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
