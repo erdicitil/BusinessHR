@@ -1,6 +1,8 @@
-﻿using Owin;
+﻿using Microsoft.Owin;
+using Owin;
 
-namespace IdentitySample
+[assembly: OwinStartupAttribute(typeof(BusinessHR.Admin.Startup))]
+namespace BusinessHR.Admin
 {
     public partial class Startup
     {
