@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessHR.Data", "Business
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessHR.Service", "BusinessHR.Service\BusinessHR.Service.csproj", "{18EAB041-636A-4BB8-9D8E-D00F53D60718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessHR.Admin", "BusinessHR.Admin\BusinessHR.Admin.csproj", "{F2CEEE9F-B3E2-435B-9941-8C0D2A12B3C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessHR.Admin", "BusinessHR.Admin\BusinessHR.Admin.csproj", "{536DAACA-BC77-4EB1-8365-F59C2F4FF2DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{18EAB041-636A-4BB8-9D8E-D00F53D60718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18EAB041-636A-4BB8-9D8E-D00F53D60718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18EAB041-636A-4BB8-9D8E-D00F53D60718}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2CEEE9F-B3E2-435B-9941-8C0D2A12B3C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2CEEE9F-B3E2-435B-9941-8C0D2A12B3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2CEEE9F-B3E2-435B-9941-8C0D2A12B3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2CEEE9F-B3E2-435B-9941-8C0D2A12B3C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{536DAACA-BC77-4EB1-8365-F59C2F4FF2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536DAACA-BC77-4EB1-8365-F59C2F4FF2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536DAACA-BC77-4EB1-8365-F59C2F4FF2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536DAACA-BC77-4EB1-8365-F59C2F4FF2DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
