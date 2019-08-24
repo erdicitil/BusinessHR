@@ -14,7 +14,7 @@ namespace BusinessHR.Data.Builders
         {
 
             builder.Property(b => b.Name).HasMaxLength(50).IsRequired();
-            builder.HasOptional(a => a.Country).WithMany(b => b.Cities).HasForeignKey(a => a.CountryId);
+            builder.HasRequired(a => a.Country).WithMany(b => b.Cities).HasForeignKey(a => a.CountryId);
         }
     }
 }

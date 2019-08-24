@@ -13,7 +13,7 @@ namespace BusinessHR.Data.Builders
         public RegionBuilder(EntityTypeConfiguration<Region> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
-            builder.HasOptional(a => a.City).WithMany(b => b.Regions).HasForeignKey(a => a.City);
+            builder.HasRequired(a => a.City).WithMany(b => b.Regions).HasForeignKey(a => a.CityId);
 
         }
     }

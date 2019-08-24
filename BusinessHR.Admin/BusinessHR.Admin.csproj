@@ -189,6 +189,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CertificatesController.cs" />
+    <Compile Include="Models\CertificateViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -256,6 +258,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Certificates\Create.cshtml" />
+    <Content Include="Views\Certificates\Delete.cshtml" />
+    <Content Include="Views\Certificates\Details.cshtml" />
+    <Content Include="Views\Certificates\Edit.cshtml" />
+    <Content Include="Views\Certificates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -272,6 +279,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessHR.Data\BusinessHR.Data.csproj">
+      <Project>{f1ffcd02-0a93-4073-b079-fb4f0b2afa43}</Project>
+      <Name>BusinessHR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessHR.Model\BusinessHR.Model.csproj">
+      <Project>{ba34e844-4ec4-4f08-9a73-edb9240103b3}</Project>
+      <Name>BusinessHR.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessHR.Service\BusinessHR.Service.csproj">
+      <Project>{18eab041-636a-4bb8-9d8e-d00f53d60718}</Project>
+      <Name>BusinessHR.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

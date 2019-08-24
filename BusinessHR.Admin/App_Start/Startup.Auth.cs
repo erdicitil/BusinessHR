@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using BusinessHR.Admin.Models;
+using BusinessHR.Data;
+using BusinessHR.Model;
 
 namespace BusinessHR.Admin
 {

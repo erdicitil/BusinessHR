@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BusinessHR.Admin.Models;
+using BusinessHR.Model;
+using BusinessHR.Data;
 
 namespace BusinessHR.Admin
 {

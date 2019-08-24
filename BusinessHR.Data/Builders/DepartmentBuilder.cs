@@ -13,7 +13,7 @@ namespace BusinessHR.Data.Builders
         public DepartmentBuilder(EntityTypeConfiguration<Department> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
-            builder.HasOptional(a => a.Company).WithMany(b => b.Departments).HasForeignKey(a => a.Company);
+            builder.HasRequired(a => a.Company).WithMany(b => b.Departments).HasForeignKey(a => a.CompanyId);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BusinessHR.Data.Builders
         public PositionBuilder(EntityTypeConfiguration<Position> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
-            builder.HasOptional(a => a.Department).WithMany(b => b.Positions).HasForeignKey(a => a.Department);
+            builder.HasRequired(a => a.Department).WithMany(b => b.Positions).HasForeignKey(a => a.DepartmentId);
 
         }
     }

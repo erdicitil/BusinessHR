@@ -13,7 +13,7 @@ namespace BusinessHR.Data
         public PermissionBuilder(EntityTypeConfiguration<Permission> builder)
         {
             builder.Property(b => b.PermissionTime).HasMaxLength(100).IsRequired();
-            builder.HasOptional(a => a.PermissionType).WithMany(b => b.Permissions).HasForeignKey(a => a.PermissionType);
+            builder.HasRequired(a => a.PermissionType).WithMany(b => b.Permissions).HasForeignKey(a => a.PermissionTypeId);
 
         }
     }
