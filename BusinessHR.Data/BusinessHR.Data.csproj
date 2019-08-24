@@ -76,9 +76,9 @@
     <Compile Include="Builders\SalaryBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Builders\PermissionBuilder.cs" />
-    <Compile Include="Migrations\201908241153486_InitialCreate.cs" />
-    <Compile Include="Migrations\201908241153486_InitialCreate.Designer.cs">
-      <DependentUpon>201908241153486_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201908241346384_InitialCreate.cs" />
+    <Compile Include="Migrations\201908241346384_InitialCreate.Designer.cs">
+      <DependentUpon>201908241346384_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,8 +96,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908241153486_InitialCreate.resx">
-      <DependentUpon>201908241153486_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908241346384_InitialCreate.resx">
+      <DependentUpon>201908241346384_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
