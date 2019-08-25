@@ -6,20 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class CitiesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ICityService cityService;
+        private readonly ICountryService countryService;
+        public CitiesController(ICityService cityService,ICountryService countryService)
+        {
+            this.cityService = cityService;
+            this.countryService = countryService;
 
+        }
         // GET: Cities
         public ActionResult Index()
         {
-            var cities = db.Cities.Include(c => c.Country);
-            return View(cities.ToList());
+            var city = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAll());
+            return View(city);
         }
 
         // GET: Cities/Details/5
@@ -29,7 +38,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = db.Cities.Find(id);
+            var city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
             if (city == null)
             {
                 return HttpNotFound();
@@ -40,7 +49,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Cities/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -49,18 +58,16 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CountryId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] City city)
+        public ActionResult Create(CityViewModel city)
         {
             if (ModelState.IsValid)
             {
-                city.Id = Guid.NewGuid();
-                db.Cities.Add(city);
-                db.SaveChanges();
+                var entity = Mapper.Map<City>(city);
+                cityService.Insert(entity);
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", city.CountryId);
-            return View(city);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
+           return View(city);
         }
 
         // GET: Cities/Edit/5
@@ -70,12 +77,12 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = db.Cities.Find(id);
+            var city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
             if (city == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", city.CountryId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
             return View(city);
         }
 
@@ -84,15 +91,15 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CountryId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] City city)
+        public ActionResult Edit(CityViewModel city)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(city).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<City>(city);
+                cityService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", city.CountryId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
             return View(city);
         }
 
@@ -103,7 +110,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = db.Cities.Find(id);
+            CityViewModel city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
             if (city == null)
             {
                 return HttpNotFound();
@@ -116,19 +123,10 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            City city = db.Cities.Find(id);
-            db.Cities.Remove(city);
-            db.SaveChanges();
+            cityService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

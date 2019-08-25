@@ -6,19 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class CertificatesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ICertificateService certificateService;
+
+        public CertificatesController(ICertificateService certificateService)
+        {
+            this.certificateService = certificateService;
+        }
 
         // GET: Certificates
         public ActionResult Index()
         {
-            return View(db.Certificates.ToList());
+            var certificate = Mapper.Map<IEnumerable<CertificateViewModel>>(certificateService.GetAll());
+            return View(certificate);
         }
 
         // GET: Certificates/Details/5
@@ -28,7 +37,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Certificate certificate = db.Certificates.Find(id);
+            CertificateViewModel certificate = Mapper.Map<CertificateViewModel>(certificateService.Get(id.Value));
             if (certificate == null)
             {
                 return HttpNotFound();
@@ -47,18 +56,18 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Certificate certificate)
+        public ActionResult Create( CertificateViewModel certificate)
         {
             if (ModelState.IsValid)
             {
-                certificate.Id = Guid.NewGuid();
-                db.Certificates.Add(certificate);
-                db.SaveChanges();
+                var entity = Mapper.Map<Certificate>(certificate);
+                certificateService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
             return View(certificate);
         }
+    
 
         // GET: Certificates/Edit/5
         public ActionResult Edit(Guid? id)
@@ -67,7 +76,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Certificate certificate = db.Certificates.Find(id);
+            CertificateViewModel certificate = Mapper.Map<CertificateViewModel>(certificateService.Get(id.Value));
             if (certificate == null)
             {
                 return HttpNotFound();
@@ -80,12 +89,12 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Certificate certificate)
+        public ActionResult Edit(CertificateViewModel certificate)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(certificate).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Certificate>(certificate);
+                certificateService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(certificate);
@@ -98,7 +107,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Certificate certificate = db.Certificates.Find(id);
+            CertificateViewModel certificate = Mapper.Map<CertificateViewModel>(certificateService.Get(id.Value));
             if (certificate == null)
             {
                 return HttpNotFound();
@@ -111,19 +120,10 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Certificate certificate = db.Certificates.Find(id);
-            db.Certificates.Remove(certificate);
-            db.SaveChanges();
+            certificateService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

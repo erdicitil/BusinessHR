@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -76,13 +76,9 @@
     <Compile Include="Builders\SalaryBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Builders\PermissionBuilder.cs" />
-    <Compile Include="Migrations\201908241346384_InitialCreate.cs" />
-    <Compile Include="Migrations\201908241346384_InitialCreate.Designer.cs">
-      <DependentUpon>201908241346384_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908250103376_WorkStatus.cs" />
-    <Compile Include="Migrations\201908250103376_WorkStatus.Designer.cs">
-      <DependentUpon>201908250103376_WorkStatus.cs</DependentUpon>
+    <Compile Include="Migrations\201908251537134_InitialCreate.cs" />
+    <Compile Include="Migrations\201908251537134_InitialCreate.Designer.cs">
+      <DependentUpon>201908251537134_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,11 +96,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908241346384_InitialCreate.resx">
-      <DependentUpon>201908241346384_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908250103376_WorkStatus.resx">
-      <DependentUpon>201908250103376_WorkStatus.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908251537134_InitialCreate.resx">
+      <DependentUpon>201908251537134_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

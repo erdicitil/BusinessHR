@@ -51,6 +51,6 @@ namespace BusinessHR.Data
             new SalaryBuilder(modelBuilder.Entity<Salary>());
         }
 
-
+       
     }
 }
