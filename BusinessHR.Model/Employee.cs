@@ -13,6 +13,7 @@ namespace BusinessHR.Model
         public string FullName { get { return FirstName + " " + LastName; } }
         public string Photo { get; set; }
         public Gender Gender { get; set; }
+        
         public DateTime DateOfBirth { get; set; }
         public int IdentityNumber { get; set; }
         public string Mobile { get; set; }
@@ -23,7 +24,6 @@ namespace BusinessHR.Model
         public Guid PositionId { get; set; }
         public Position Position { get; set; }
         public string Title { get; set; }
-        public string WorkStatus { get; set; }
         public DateTime CompanyWorkStartDate { get; set; }
         public DateTime? CompanyWorkEndDate { get; set; }
         public Guid SalaryId { get; set; }
@@ -36,6 +36,7 @@ namespace BusinessHR.Model
         public virtual City City { get; set; }
         public Guid? RegionId { get; set; }
         public virtual Region Region { get; set; }
+        public WorkStatus WorkStatus { get; set; }
 
 
 

@@ -9,17 +9,12 @@ namespace BusinessHR.Model
 {
     public enum WorkStatus
     {
-        [Display(Name = "Tam Zamanlı")]
-        FullTime = 1,
+        [Display(Name = "Çalışıyor")]
 
-        [Display(Name = "Yarı Zamanlı")]
-        PartTime = 2,
+        Working = 1,
 
-        [Display(Name = "Stajyer")]
-        Intern = 3,
+        [Display(Name = "Ayrıldı")]
 
-        [Display(Name = "Diğer Durumlar")]
-        Other = 4
-
+        Left = 2,
     }
 }

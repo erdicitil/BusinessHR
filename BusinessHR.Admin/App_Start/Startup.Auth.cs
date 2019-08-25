@@ -8,8 +8,10 @@ using Owin;
 using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using IdentitySample.Models;
 
-namespace BusinessHR.Admin
+
+namespace IdentitySample
 {
     public partial class Startup
     {

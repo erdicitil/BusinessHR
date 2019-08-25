@@ -1,8 +1,7 @@
-﻿using Microsoft.Owin;
+﻿
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(BusinessHR.Admin.Startup))]
-namespace BusinessHR.Admin
+namespace IdentitySample
 {
     public partial class Startup
     {
@@ -10,5 +9,7 @@ namespace BusinessHR.Admin
         {
             ConfigureAuth(app);
         }
+
+        
     }
 }

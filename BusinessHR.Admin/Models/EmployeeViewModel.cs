@@ -68,8 +68,10 @@ namespace BusinessHR.Admin.Models
         public string Title { get; set; }
         [MaxLength(100)]
         [Display(Name = "Çalışma Durumu")]
-        public string WorkStatus { get; set; }
-        
+        public WorkStatus WorkStatus { get; set; }
+        [Display(Name = "Çalışma Türü")]
+        public WorkType WorkType { get; set; }
+
         [Display(Name = "İşe Başlangıç Tarihi")]
         [Required]
         public DateTime CompanyWorkStartDate { get; set; }
