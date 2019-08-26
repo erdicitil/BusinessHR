@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 
-namespace SmallCRM.Admin.Extensions
+namespace BusinessHR.Admin.Extensions
 {
     public static class Extensions
     {

@@ -16,7 +16,7 @@ namespace BusinessHR.Admin
                 dest => dest.Employees, opt => opt.Ignore());
             cfg.CreateMap<City, CityViewModel>().ForMember(
             dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Employees, opt => opt.Ignore());
-
+            Mapper.Initialize(cfg);
             
         }
     }
