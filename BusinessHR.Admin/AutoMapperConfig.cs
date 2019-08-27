@@ -27,7 +27,15 @@ namespace BusinessHR.Admin
                 dest => dest.Companies, opt => opt.Ignore());
 
             cfg.CreateMap<Salary, SalaryViewModel>().ReverseMap().ForMember(
-              dest => dest.Employees, opt => opt.Ignore());
+                dest => dest.Employees, opt => opt.Ignore());
+
+            cfg.CreateMap<Region, RegionViewModel>().ForMember(
+                dest => dest.CityName,
+                opt => opt.MapFrom(src => src.City.Name)).ReverseMap().ForMember(
+                dest => dest.City, opt => opt.Ignore()).ForMember(
+                dest => dest.Employees, opt => opt.Ignore()).ForMember(
+                dest => dest.Companies, opt => opt.Ignore());
+              
 
 
             //en altta kalsın
