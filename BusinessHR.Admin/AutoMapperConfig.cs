@@ -19,6 +19,7 @@ namespace BusinessHR.Admin
             cfg.CreateMap<City, CityViewModel>().ForMember(
             dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(
             dest => dest.Employees, opt => opt.Ignore());
+            dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Employees, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Companies, opt => opt.Ignore());
 
 
             cfg.CreateMap<Country, CountryViewModel>().ReverseMap().ForMember(

@@ -6,19 +6,26 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class CountriesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private readonly ICountryService countryService;
+        public CountriesController(ICountryService countryService)
+        {
+            this.countryService = countryService;
+        }
         // GET: Countries
         public ActionResult Index()
         {
-            return View(db.Countries.ToList());
+            var country = Mapper.Map<IEnumerable<CountryViewModel>>(countryService.GetAll());
+            return View(country);
         }
 
         // GET: Countries/Details/5
@@ -28,7 +35,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Country country = db.Countries.Find(id);
+            CountryViewModel country = Mapper.Map<CountryViewModel>(countryService.Get(id.Value));
             if (country == null)
             {
                 return HttpNotFound();
@@ -47,13 +54,12 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Country country)
+        public ActionResult Create( CountryViewModel country)
         {
             if (ModelState.IsValid)
             {
-                country.Id = Guid.NewGuid();
-                db.Countries.Add(country);
-                db.SaveChanges();
+                var entity = Mapper.Map<Country>(country);
+                countryService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +73,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Country country = db.Countries.Find(id);
+            CountryViewModel country = Mapper.Map<CountryViewModel>(countryService.Get(id.Value));
             if (country == null)
             {
                 return HttpNotFound();
@@ -80,12 +86,12 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Country country)
+        public ActionResult Edit( CountryViewModel country)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(country).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Country>(country);
+                countryService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(country);
@@ -98,7 +104,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Country country = db.Countries.Find(id);
+            var country = Mapper.Map<CountryViewModel>(countryService.Get(id.Value));
             if (country == null)
             {
                 return HttpNotFound();
@@ -111,19 +117,8 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Country country = db.Countries.Find(id);
-            db.Countries.Remove(country);
-            db.SaveChanges();
+            countryService.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
