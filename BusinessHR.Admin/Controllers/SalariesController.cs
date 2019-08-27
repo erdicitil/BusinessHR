@@ -6,29 +6,38 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class SalariesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ISalaryService salaryService;
 
-        // GET: Salaries
-        public ActionResult Index()
+        public SalariesController(ISalaryService salaryService)
         {
-            return View(db.Salaries.ToList());
+            this.salaryService = salaryService;
         }
 
-        // GET: Salaries/Details/5
+        // GET: Certificates
+        public ActionResult Index()
+        {
+            var salary = Mapper.Map<IEnumerable<SalaryViewModel>>(salaryService.GetAll());
+            return View(salary);
+        }
+
+        // GET: Certificates/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salary salary = db.Salaries.Find(id);
+            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(salaryService.Get(id.Value));
             if (salary == null)
             {
                 return HttpNotFound();
@@ -36,38 +45,38 @@ namespace BusinessHR.Admin.Controllers
             return View(salary);
         }
 
-        // GET: Salaries/Create
+        // GET: Certificates/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Salaries/Create
+        // POST: Certificates/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Maas,BrutMaas,NetMaas,AGI,KGV,Odenen,Durum,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Salary salary)
+        public ActionResult Create(SalaryViewModel salary)
         {
             if (ModelState.IsValid)
             {
-                salary.Id = Guid.NewGuid();
-                db.Salaries.Add(salary);
-                db.SaveChanges();
+                var entity = Mapper.Map<Salary>(salary);
+                salaryService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
             return View(salary);
         }
 
-        // GET: Salaries/Edit/5
+
+        // GET: Certificates/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salary salary = db.Salaries.Find(id);
+            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(salaryService.Get(id.Value));
             if (salary == null)
             {
                 return HttpNotFound();
@@ -75,30 +84,30 @@ namespace BusinessHR.Admin.Controllers
             return View(salary);
         }
 
-        // POST: Salaries/Edit/5
+        // POST: Certificates/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Maas,BrutMaas,NetMaas,AGI,KGV,Odenen,Durum,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Salary salary)
+        public ActionResult Edit(SalaryViewModel salary)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(salary).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Salary>(salary);
+                salaryService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(salary);
         }
 
-        // GET: Salaries/Delete/5
+        // GET: Certificates/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salary salary = db.Salaries.Find(id);
+            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(salaryService.Get(id.Value));
             if (salary == null)
             {
                 return HttpNotFound();
@@ -106,24 +115,15 @@ namespace BusinessHR.Admin.Controllers
             return View(salary);
         }
 
-        // POST: Salaries/Delete/5
+        // POST: Certificates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Salary salary = db.Salaries.Find(id);
-            db.Salaries.Remove(salary);
-            db.SaveChanges();
+            salaryService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }

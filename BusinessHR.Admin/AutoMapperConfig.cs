@@ -12,10 +12,13 @@ namespace BusinessHR.Admin
             var cfg = new MapperConfigurationExpression();
             cfg.AllowNullCollections = true;
             cfg.AllowNullDestinationValues = true;
+
             cfg.CreateMap<Certificate, CertificateViewModel>().ReverseMap().ForMember(
                 dest => dest.Employees, opt => opt.Ignore());
 
             cfg.CreateMap<City, CityViewModel>().ForMember(
+            dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(
+            dest => dest.Employees, opt => opt.Ignore());
             dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Employees, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Companies, opt => opt.Ignore());
 
 
@@ -23,6 +26,9 @@ namespace BusinessHR.Admin
                 dest => dest.Employees, opt => opt.Ignore()).ForMember(
                 dest => dest.Cities, opt => opt.Ignore()).ForMember(
                 dest => dest.Companies, opt => opt.Ignore());
+
+            cfg.CreateMap<Salary, SalaryViewModel>().ReverseMap().ForMember(
+              dest => dest.Employees, opt => opt.Ignore());
 
 
             //en altta kalsın
