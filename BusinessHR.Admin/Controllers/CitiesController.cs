@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using BusinessHR.Admin.Models;
-using BusinessHR.Data;
 using BusinessHR.Model;
 using BusinessHR.Service;
 
@@ -38,7 +34,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
+            CityViewModel city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
             if (city == null)
             {
                 return HttpNotFound();
