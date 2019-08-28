@@ -26,7 +26,7 @@ namespace BusinessHR.Admin.Controllers
         public ActionResult Index()
         {
             var regions = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAll());
-            return View(regions.ToList());
+            return View(regions);
         }
 
         // GET: Regions/Details/5

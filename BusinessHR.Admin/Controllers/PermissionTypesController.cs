@@ -6,19 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class PermissionTypesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IPermissionTypeService permissionTypeService;
+
+        public PermissionTypesController(IPermissionTypeService permissionTypeService)
+        {
+            this.permissionTypeService = permissionTypeService;
+        }
 
         // GET: PermissionTypes
         public ActionResult Index()
         {
-            return View(db.PermissionTypes.ToList());
+            var permissionType = Mapper.Map<IEnumerable<PermissionTypeViewModel>>(permissionTypeService.GetAll());
+            return View(permissionType);
         }
 
         // GET: PermissionTypes/Details/5
@@ -28,7 +37,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PermissionType permissionType = db.PermissionTypes.Find(id);
+            PermissionTypeViewModel permissionType = Mapper.Map<PermissionTypeViewModel>(permissionTypeService.Get(id.Value));
             if (permissionType == null)
             {
                 return HttpNotFound();
@@ -47,13 +56,12 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] PermissionType permissionType)
+        public ActionResult Create(PermissionTypeViewModel permissionType)
         {
             if (ModelState.IsValid)
             {
-                permissionType.Id = Guid.NewGuid();
-                db.PermissionTypes.Add(permissionType);
-                db.SaveChanges();
+                var entity = Mapper.Map<PermissionType>(permissionType);
+                permissionTypeService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +75,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PermissionType permissionType = db.PermissionTypes.Find(id);
+            PermissionTypeViewModel permissionType = Mapper.Map<PermissionTypeViewModel>(permissionTypeService.Get(id.Value));
             if (permissionType == null)
             {
                 return HttpNotFound();
@@ -80,14 +88,15 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] PermissionType permissionType)
+        public ActionResult Edit(PermissionTypeViewModel permissionType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(permissionType).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<PermissionType>(permissionType);
+                permissionTypeService.Insert(entity);
                 return RedirectToAction("Index");
             }
+
             return View(permissionType);
         }
 
@@ -98,7 +107,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PermissionType permissionType = db.PermissionTypes.Find(id);
+            PermissionTypeViewModel permissionType = Mapper.Map<PermissionTypeViewModel>(permissionTypeService.Get(id.Value));
             if (permissionType == null)
             {
                 return HttpNotFound();
@@ -111,19 +120,10 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            PermissionType permissionType = db.PermissionTypes.Find(id);
-            db.PermissionTypes.Remove(permissionType);
-            db.SaveChanges();
+            permissionTypeService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

@@ -6,20 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class PositionsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IPositionService positionService;
+
+        public PositionsController(IPositionService positionService)
+        {
+            this.positionService = positionService;
+        }
+
 
         // GET: Positions
         public ActionResult Index()
         {
-            var positions = db.Positions.Include(p => p.Department);
-            return View(positions.ToList());
+            var position = Mapper.Map<IEnumerable<PositionViewModel>>(positionService.GetAll());
+            return View(position);
         }
 
         // GET: Positions/Details/5
@@ -29,7 +38,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Positions.Find(id);
+            PositionViewModel position = Mapper.Map<PositionViewModel>(positionService.Get(id.Value));
             if (position == null)
             {
                 return HttpNotFound();
@@ -40,7 +49,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Positions/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name");
+           
             return View();
         }
 
@@ -49,17 +58,15 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,DepartmentId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Position position)
+        public ActionResult Create(PositionViewModel position)
         {
             if (ModelState.IsValid)
             {
-                position.Id = Guid.NewGuid();
-                db.Positions.Add(position);
-                db.SaveChanges();
+                var entity = Mapper.Map<Position>(position);
+                positionService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", position.DepartmentId);
             return View(position);
         }
 
@@ -70,12 +77,12 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Positions.Find(id);
+            PositionViewModel position = Mapper.Map<PositionViewModel>(positionService.Get(id.Value));
             if (position == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", position.DepartmentId);
+            
             return View(position);
         }
 
@@ -84,15 +91,14 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,DepartmentId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Position position)
+        public ActionResult Edit(PositionViewModel position)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(position).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Position>(position);
+                positionService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", position.DepartmentId);
             return View(position);
         }
 
@@ -103,7 +109,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Positions.Find(id);
+            PositionViewModel position = Mapper.Map<PositionViewModel>(positionService.Get(id.Value));
             if (position == null)
             {
                 return HttpNotFound();
@@ -116,19 +122,9 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Position position = db.Positions.Find(id);
-            db.Positions.Remove(position);
-            db.SaveChanges();
+            positionService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
