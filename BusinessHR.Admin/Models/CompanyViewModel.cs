@@ -23,14 +23,14 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Ülke")]
         public Guid CountryId { get; set; }
         [Display(Name = "Ülke Adı")]
-        public virtual Country Country { get; set; }
+        public virtual Country CountryName { get; set; }
         [Display(Name = "Şehir")]
         public Guid CityId { get; set; }
         [Display(Name = "Şehir Adı")]
-        public virtual City City { get; set; }
+        public virtual City CityName { get; set; }
         [Display(Name = "İlçe")]
         public Guid RegionId { get; set; }
         [Display(Name = "İlçe Adı")]
-        public virtual Region Region { get; set; }
+        public virtual Region RegionName { get; set; }
     }
 }

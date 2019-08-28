@@ -18,8 +18,8 @@ namespace BusinessHR.Admin
 
             cfg.CreateMap<City, CityViewModel>().ForMember(
             dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(
-            dest => dest.Employees, opt => opt.Ignore());
-            dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Employees, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Companies, opt => opt.Ignore());
+            dest => dest.Employees, opt => opt.Ignore())
+           .ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Companies, opt => opt.Ignore());
 
 
             cfg.CreateMap<Country, CountryViewModel>().ReverseMap().ForMember(
@@ -30,7 +30,8 @@ namespace BusinessHR.Admin
             cfg.CreateMap<Salary, SalaryViewModel>().ReverseMap().ForMember(
               dest => dest.Employees, opt => opt.Ignore());
 
-
+            cfg.CreateMap<Company, CompanyViewModel>().ForMember(
+            dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name)).ForMember(dest => dest.RegionName, opt => opt.MapFrom(src => src.Region.Name));
             //en altta kalsın
             Mapper.Initialize(cfg);
             

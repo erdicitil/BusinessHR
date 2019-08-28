@@ -18,11 +18,10 @@ namespace BusinessHR.Admin.Controllers
     {
         private readonly ICityService cityService;
         private readonly ICountryService countryService;
-        public CitiesController(ICityService cityService,ICountryService countryService)
+        public CitiesController(ICityService cityService, ICountryService countryService)
         {
             this.cityService = cityService;
             this.countryService = countryService;
-
         }
         // GET: Cities
         public ActionResult Index()
@@ -38,7 +37,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
+            CityViewModel city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
             if (city == null)
             {
                 return HttpNotFound();
@@ -58,7 +57,7 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CityViewModel city)
+        public ActionResult Create( CityViewModel city)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +65,9 @@ namespace BusinessHR.Admin.Controllers
                 cityService.Insert(entity);
                 return RedirectToAction("Index");
             }
+
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
-           return View(city);
+            return View(city);
         }
 
         // GET: Cities/Edit/5
@@ -77,7 +77,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
+            CityViewModel city = Mapper.Map<CityViewModel>(cityService.Get(id.Value));
             if (city == null)
             {
                 return HttpNotFound();
@@ -91,7 +91,7 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CityViewModel city)
+        public ActionResult Edit( CityViewModel city)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +127,6 @@ namespace BusinessHR.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        
+       
     }
 }

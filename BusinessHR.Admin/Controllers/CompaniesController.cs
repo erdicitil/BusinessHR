@@ -6,19 +6,31 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class CompaniesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ICityService cityService;
+        private readonly ICountryService countryService;
+        private readonly ICompanyService companyService;
+        private readonly IRegionService regionService;
+        public CompaniesController(ICompanyService companyService, ICityService cityService, ICountryService countryService, IRegionService regionService)
+        {
+            this.companyService = companyService;
+            this.cityService = cityService;
+            this.countryService = countryService;
 
+        }
         // GET: Companies
         public ActionResult Index()
         {
-            var companies = db.Companies.Include(c => c.City).Include(c => c.Country).Include(c => c.Region);
+            var companies = Mapper.Map<IEnumerable<CompanyViewModel>>(companyService.GetAll());
             return View(companies.ToList());
         }
 
@@ -29,7 +41,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            var company = Mapper.Map<CompanyViewModel>(companyService.Get(id.Value));
             if (company == null)
             {
                 return HttpNotFound();
@@ -40,9 +52,9 @@ namespace BusinessHR.Admin.Controllers
         // GET: Companies/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -51,19 +63,18 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Phone,Address,CountryId,CityId,RegionId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
+        public ActionResult Create( CompanyViewModel company)
         {
             if (ModelState.IsValid)
             {
-                company.Id = Guid.NewGuid();
-                db.Companies.Add(company);
-                db.SaveChanges();
+                var entity = Mapper.Map<Company>(company);
+                companyService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", company.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", company.CountryId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", company.RegionId);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", company.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.CountryId);
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.RegionId);
             return View(company);
         }
 
@@ -74,14 +85,14 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            var company = Mapper.Map<CompanyViewModel>(companyService.Get(id.Value));
             if (company == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", company.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", company.CountryId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", company.RegionId);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", company.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.CountryId);
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.RegionId);
             return View(company);
         }
 
@@ -90,17 +101,17 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Phone,Address,CountryId,CityId,RegionId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
+        public ActionResult Edit( CompanyViewModel company)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Company>(company);
+                companyService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", company.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", company.CountryId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", company.RegionId);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", company.CityId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.CountryId);
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.RegionId);
             return View(company);
         }
 
@@ -111,7 +122,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            CompanyViewModel company = Mapper.Map<CompanyViewModel>(companyService.Get(id.Value));
             if (company == null)
             {
                 return HttpNotFound();
@@ -124,19 +135,10 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
-            db.SaveChanges();
+            companyService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }
