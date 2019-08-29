@@ -6,12 +6,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Companies")" style="color:black">Firma</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Companies")" style="color:black">Detaylar</a></li>
+
+</ol>
+<h4 class="mx-3">Firma Detayları</h4>
 
 <div>
-    <h4>Company</h4>
+
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal mx-3">
         <dt>
             @Html.DisplayNameFor(model => model.CityName)
         </dt>
@@ -64,7 +73,7 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+<p class="mx-3">
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Geri Dön", "Index")
 </p>
