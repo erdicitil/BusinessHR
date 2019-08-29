@@ -9,17 +9,19 @@
     <i class="fas fa-fw fa-home"></i>
     <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
 </li>
-<li class="breadcrumb-item active"><a href="@Url.Action("Index","Positions")" style="color:black">Unvan</a></li>
+<li class="breadcrumb-item active"><a href="@Url.Action("Index","Positions")" style="color:black">Pozisyonlar</a></li>
 <li class="breadcrumb-item active"><a href="@Url.Action("Create","Positions")" style="color:black">Oluştur</a></li>
 
     </ol>
-<h4 class="mx-3">Unvan Oluştur</h4>
+<h4 class="mx-3">Pozisyon Oluştur</h4>
 
 
-@using (Html.BeginForm())
-{
-@Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
 
+    
+    
 <div class="form-horizontal mx-3">
     
     <hr />

@@ -15,9 +15,10 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Pozisyon")]
         public string Name { get; set; }
         [MaxLength(150)]
-        [Display(Name = "Bölüm Adı")]
-        public Guid DepartmentId { get; set; }
         
+        public Guid DepartmentId { get; set; }
+        [Display(Name = "Bölüm Adı")]
+        public string DepartmentName { get; set; }
         
     }
 }
