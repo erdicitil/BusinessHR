@@ -1,15 +1,25 @@
-﻿@model BusinessHR.Model.Permission
+﻿@model BusinessHR.Admin.Models.PermissionViewModel
+@using BusinessHR.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Permissions")" style="color:black">İzinler</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Permissions")" style="color:black">Detaylar</a></li>
+
+</ol>
+<h4 class="mx-3">İzin Detayları</h4>
 
 <div>
-    <h4>Permission</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal mx-3">
         <dt>
             @Html.DisplayNameFor(model => model.PermissionType.Name)
         </dt>
@@ -42,97 +52,11 @@
             @Html.DisplayFor(model => model.PermissionTime)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IpAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IpAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserAgent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+    
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Geri Dön", "Index")
 </p>

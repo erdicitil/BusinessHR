@@ -17,6 +17,8 @@ namespace BusinessHR.Admin.Models
         [MaxLength(50)]
         [Display(Name = "Şehir Adı")]
         public Guid CityId { get; set; }
-        
+        [Display(Name = "Şehir Adı")]
+        public string CityName { get; set; }
+
     }
 }

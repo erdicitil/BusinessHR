@@ -1,7 +1,7 @@
-﻿@model IEnumerable<BusinessHR.Model.Region>
-@{
-    Layout = "/Views/Shared/_Layout.cshtml";
-}
+﻿@model IEnumerable<BusinessHR.Admin.Models.RegionViewModel>
+@using BusinessHR.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
+
 @{
     ViewBag.Title = "Index";
 }
@@ -14,7 +14,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.City.Name)
+            @Html.DisplayNameFor(model => model.CityName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -27,7 +27,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.City.Name)
+                @Html.DisplayFor(modelItem => item.CityName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
