@@ -16,7 +16,6 @@ namespace BusinessHR.Admin.Models
         public string Name { get; set; }
         [Display(Name = "Firma")]
         public Guid CompanyId { get; set; }
-        [Display(Name = "Firma Adı")]
-        public virtual Company Company { get; set; }
+        
     }
 }

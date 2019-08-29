@@ -75,7 +75,7 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "İşe Başlangıç Tarihi")]
         [Required]
         public DateTime CompanyWorkStartDate { get; set; }
-        
+
         [Display(Name = "İşten Ayrılış Tarihi")]
         public DateTime CompanyWorkEndDate { get; set; }
         [MaxLength(200)]
@@ -86,12 +86,11 @@ namespace BusinessHR.Admin.Models
         [MaxLength(200)]
         [Display(Name = "Maaş Miktarı")]
         public virtual Salary Salary { get; set; }
-        
+
         [MaxLength(200)]
         [Display(Name = "Aldığı Sertifikalar")]
         public Guid? CertificateId { get; set; }
-        [MaxLength(200)]
-        [Display(Name = "Sertifika Adı")]
-        public virtual Certificate Certificate { get; set; }
+        
     }
+    
 }
