@@ -18,5 +18,6 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Bölüm Adı")]
         public Guid DepartmentId { get; set; }
         
+        
     }
 }

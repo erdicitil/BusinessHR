@@ -75,7 +75,7 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "İşe Başlangıç Tarihi")]
         [Required]
         public DateTime CompanyWorkStartDate { get; set; }
-        
+
         [Display(Name = "İşten Ayrılış Tarihi")]
         public DateTime CompanyWorkEndDate { get; set; }
         [MaxLength(200)]
@@ -85,6 +85,8 @@ namespace BusinessHR.Admin.Models
         [Required]
         [MaxLength(200)]
         [Display(Name = "Maaş Miktarı")]
+        
+
         public virtual Salary SalaryDurum { get; set; }
         
         [MaxLength(200)]
@@ -106,4 +108,5 @@ namespace BusinessHR.Admin.Models
         public virtual Region RegionName { get; set; }
 
     }
+    
 }

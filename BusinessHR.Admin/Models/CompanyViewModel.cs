@@ -30,6 +30,7 @@ namespace BusinessHR.Admin.Models
         public virtual City CityName { get; set; }
         [Display(Name = "İlçe")]
         public Guid RegionId { get; set; }
+       
         [Display(Name = "İlçe Adı")]
         public virtual Region RegionName { get; set; }
     }
