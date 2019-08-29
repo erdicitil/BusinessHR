@@ -11,21 +11,21 @@
         <i class="fas fa-fw fa-home"></i>
         <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
     </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Positions")" style="color:black">Unvanlar</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Positions")" style="color:black">Pozisyonlar</a></li>
     <li class="breadcrumb-item active"><a href="@Url.Action("Details","Positions")" style="color:black">Detaylar</a></li>
 
     </ol>
-    <h4 class="mx-3">Unvan Detayları</h4>
+    <h4 class="mx-3">Pozisyon Detayları</h4>
 
     <div>
     <hr />
     <dl class="dl-horizontal mx-3">
         <dt>
-            @Html.DisplayNameFor(model => model.Department.Name)
+            @Html.DisplayNameFor(model => model.DepartmentName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Department.Name)
+            @Html.DisplayFor(model => model.DepartmentName)
         </dd>
 
         <dt>

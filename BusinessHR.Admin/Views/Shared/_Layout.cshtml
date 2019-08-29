@@ -83,7 +83,7 @@
 
                     <a class="dropdown-item" href="@Url.Action("Index","Companies")"><i class="fas fa-fw fa-building"></i> Firma Bilgileri</a>
                     <a class="dropdown-item" href="login.html"><i class="fas fa-fw fa-home"></i> Departman</a>
-                    <a class="dropdown-item" href="register.html"><i class="fas fa-fw fa-briefcase"></i> Pozisyon</a>
+                    <a class="dropdown-item" href="@Url.Action("Index" , "Positions")"><i class="fas fa-fw fa-briefcase"></i> Pozisyon</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -99,10 +99,10 @@
                     <span>İzin Yönetimi</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <a class="dropdown-item" href="register.html">İzinler</a>
+                    <a class="dropdown-item" href="@Url.Action("Index", "Permissions")">İzinler</a>
                     <hr />
                     <h6 class="dropdown-header">İzin Ayarlar</h6>
-                    <a class="dropdown-item" href="login.html">İzin Türleri</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","PermissionTypes")">İzin Türleri</a>
                 </div>
 
             <li class="nav-item">
