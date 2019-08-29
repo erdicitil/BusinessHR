@@ -41,11 +41,11 @@ namespace BusinessHR.Service
         {
             return cityRepository.GetAll();
         }
+
         public IEnumerable<City> GetAllByCountryId(Guid countryId)
         {
             return cityRepository.GetAll(x => x.CountryId == countryId, o => o.Name, false);
         }
-
         public void Insert(City city)
         {
             cityRepository.Insert(city);
@@ -62,8 +62,9 @@ namespace BusinessHR.Service
      public interface ICityService
     {
         IEnumerable<City> GetAll();
-        IEnumerable<City> GetAllByCountryId(Guid countryId);
+       
         City Get(Guid id);
+        IEnumerable<City> GetAllByCountryId(Guid countryId);
         void Insert(City city);
         void Update(City city);
         void Delete(Guid id);

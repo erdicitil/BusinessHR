@@ -2064,11 +2064,6 @@
     <Content Include="Views\Countries\Details.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\Countries\Index.cshtml" />
-    <Content Include="Views\DeparmentViewModels\Create.cshtml" />
-    <Content Include="Views\DeparmentViewModels\Delete.cshtml" />
-    <Content Include="Views\DeparmentViewModels\Details.cshtml" />
-    <Content Include="Views\DeparmentViewModels\Edit.cshtml" />
-    <Content Include="Views\DeparmentViewModels\Index.cshtml" />
     <Content Include="Views\Departments\Create.cshtml" />
     <Content Include="Views\Departments\Delete.cshtml" />
     <Content Include="Views\Departments\Details.cshtml" />

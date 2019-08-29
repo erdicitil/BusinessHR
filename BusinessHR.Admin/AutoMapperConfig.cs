@@ -16,10 +16,11 @@ namespace BusinessHR.Admin
             cfg.CreateMap<Certificate, CertificateViewModel>().ReverseMap().ForMember(
                 dest => dest.Employees, opt => opt.Ignore());
 
-            cfg.CreateMap<City, CityViewModel>().ForMember(
-            dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(
-            dest => dest.Employees, opt => opt.Ignore()).ForMember(dest => dest.Employees, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Companies, opt => opt.Ignore());
+            
 
+            cfg.CreateMap<City, CityViewModel>().ForMember(
+            dest => dest.CountryName,
+            opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Country, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Employees, opt => opt.Ignore());
 
             cfg.CreateMap<Country, CountryViewModel>().ReverseMap().ForMember(
                 dest => dest.Employees, opt => opt.Ignore()).ForMember(
@@ -40,6 +41,12 @@ namespace BusinessHR.Admin
 
             cfg.CreateMap<Company, CompanyViewModel>().ForMember(
             dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name)).ForMember(dest => dest.RegionName, opt => opt.MapFrom(src => src.Region.Name));
+
+            cfg.CreateMap<Department, DeparmentViewModel>().ForMember(
+            dest => dest.CompanyName,
+            opt => opt.MapFrom(src => src.Company.Name)).ReverseMap().ForMember(dest => dest.Positions, opt => opt.Ignore()).ForMember(dest => dest.Employees, opt => opt.Ignore());
+
+            cfg.CreateMap<Employee, EmployeeViewModel>().ForMember(dest => dest.CertificateName, opt => opt.MapFrom(src => src.Certificate.Name)).ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department.Name)).ForMember(dest => dest.PositionName, opt => opt.MapFrom(src => src.Position.Name)).ForMember(dest => dest.SalaryDurum, opt => opt.MapFrom(src => src.Salary.Durum));
             //en altta kalsın
             Mapper.Initialize(cfg);
             

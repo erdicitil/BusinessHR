@@ -41,7 +41,7 @@ namespace BusinessHR.Service
         {
             return countryRepository.GetAll();
         }
-
+        
         public void Insert(Country country)
         {
             countryRepository.Insert(country);

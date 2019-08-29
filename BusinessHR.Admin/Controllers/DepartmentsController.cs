@@ -6,20 +6,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using BusinessHR.Admin.Models;
 using BusinessHR.Data;
 using BusinessHR.Model;
+using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IDepartmentService departmentService;
+        private readonly ICompanyService companyService;
+
+        public DepartmentsController(IDepartmentService departmentService, ICompanyService companyService)
+        {
+            this.departmentService = departmentService;
+            this.companyService = companyService;
+        }
 
         // GET: Departments
         public ActionResult Index()
         {
-            var departments = db.Departments.Include(d => d.Company);
-            return View(departments.ToList());
+            var department = Mapper.Map<IEnumerable<DeparmentViewModel>>(departmentService.GetAll());
+            return View(department);
         }
 
         // GET: Departments/Details/5
@@ -29,7 +39,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            DeparmentViewModel department = Mapper.Map<DeparmentViewModel>(departmentService.Get(id.Value));
             if (department == null)
             {
                 return HttpNotFound();
@@ -40,7 +50,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Departments/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -49,17 +59,16 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CompanyId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Department department)
+        public ActionResult Create(DeparmentViewModel department)
         {
             if (ModelState.IsValid)
             {
-                department.Id = Guid.NewGuid();
-                db.Departments.Add(department);
-                db.SaveChanges();
+                var entity = Mapper.Map<Department>(department);
+                departmentService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", department.CompanyId);
             return View(department);
         }
 
@@ -70,12 +79,12 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            DeparmentViewModel department = Mapper.Map<DeparmentViewModel>(departmentService.Get(id.Value));
             if (department == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", department.CompanyId);
             return View(department);
         }
 
@@ -84,15 +93,15 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CompanyId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Department department)
+        public ActionResult Edit(DeparmentViewModel department)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(department).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Department>(department);
+                departmentService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", department.CompanyId);
             return View(department);
         }
 
@@ -103,12 +112,12 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            DeparmentViewModel deparment = Mapper.Map<DeparmentViewModel>(departmentService.Get(id.Value));
+            if (deparment == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(deparment);
         }
 
         // POST: Departments/Delete/5
@@ -116,19 +125,10 @@ namespace BusinessHR.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Department department = db.Departments.Find(id);
-            db.Departments.Remove(department);
-            db.SaveChanges();
+            departmentService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
