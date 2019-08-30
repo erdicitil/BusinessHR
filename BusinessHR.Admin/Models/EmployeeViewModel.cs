@@ -19,7 +19,7 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Soyadı")]
         public string LastName { get; set; }
         [MaxLength(200)]
-        [Display(Name = "FullName")]
+        [Display(Name = "Adı Soyadı")]
         public string FullName { get { return FirstName + " " + LastName; } }
         [MaxLength(200)]
         [Display(Name = "Fotoğraf")]

@@ -1,18 +1,28 @@
-﻿@model BusinessHR.Model.Department
+﻿@model BusinessHR.Admin.Models.DeparmentViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Departments")" style="color:black">Departman</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Edit","Departments")" style="color:black">Düzenle</a></li>
+
+</ol>
+
+<h4 class="mx-3">Departman Düzenle</h4>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Department</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -33,18 +43,18 @@
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="mx-3">
+    @Html.ActionLink("Geri dön", "Index")
 </div>
 
 @section Scripts {
