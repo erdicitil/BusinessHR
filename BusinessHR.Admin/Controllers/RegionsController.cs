@@ -17,9 +17,11 @@ namespace BusinessHR.Admin.Controllers
     public class RegionsController : Controller
     {
         private readonly IRegionService regionService;
-        public RegionsController(IRegionService regionService)
+        private readonly ICityService cityService;
+        public RegionsController(IRegionService regionService,ICityService cityService)
         {
             this.regionService = regionService;
+            this.cityService = cityService;
         }
 
         // GET: Regions
@@ -47,7 +49,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Regions/Create
         public ActionResult Create()
         {
-           
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -64,8 +66,8 @@ namespace BusinessHR.Admin.Controllers
                 regionService.Insert(entity);
                 return RedirectToAction("Index");
             }
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
 
-           
             return View(region);
         }
 
@@ -81,7 +83,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
             return View(region);
         }
 
@@ -98,6 +100,7 @@ namespace BusinessHR.Admin.Controllers
                 regionService.Update(entity);
                 return RedirectToAction("Index");
             }
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
             return View(region);
         }
 

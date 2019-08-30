@@ -19,6 +19,7 @@ namespace BusinessHR.Admin.Models
         [MaxLength(50)]
         [Display(Name = "İzin Türü")]
         public Guid PermissionTypeId { get; set; }
+        [Display(Name = "İzin Türü Adı")]
         public string PermissionTypeName { get; set; }
        
     }
