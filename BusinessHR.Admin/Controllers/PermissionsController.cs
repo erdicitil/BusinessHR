@@ -17,10 +17,12 @@ namespace BusinessHR.Admin.Controllers
     public class PermissionsController : Controller
     {
         private readonly IPermissionService permissionService;
+        private readonly IPermissionTypeService permissionTypeService;
 
-        public PermissionsController(IPermissionService permissionService)
+        public PermissionsController(IPermissionService permissionService, IPermissionTypeService permissionTypeService)
         {
             this.permissionService = permissionService;
+            this.permissionTypeService = permissionTypeService;
         }
 
         // GET: Permissions
@@ -48,7 +50,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Permissions/Create
         public ActionResult Create()
         {
-            
+            ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -65,7 +67,7 @@ namespace BusinessHR.Admin.Controllers
                 permissionService.Insert(entity);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name", permission.PermissionTypeId);
             return View(permission);
         }
 
@@ -81,7 +83,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return HttpNotFound();
             }
-           
+            ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name", permission.PermissionTypeId);
             return View(permission);
         }
 
@@ -98,7 +100,7 @@ namespace BusinessHR.Admin.Controllers
                 permissionService.Insert(entity);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name", permission.PermissionTypeId);
             return View(permission);
         }
 

@@ -13,6 +13,6 @@ namespace BusinessHR.Model
         public virtual ICollection<Employee> Employees { get; set; }
         public string PermissionTime { get; set; }
         public Guid PermissionTypeId { get; set; }
-        public PermissionType PermissionType { get; set; }
+        public virtual PermissionType PermissionType { get; set; }
     }
 }

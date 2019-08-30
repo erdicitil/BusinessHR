@@ -4,24 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Permissions")" style="color:black">İzinler</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Create","Permissions")" style="color:black">Oluştur</a></li>
 
-</ol>
-<h4 class="mx-3">İzin Oluştur</h4>
+<h2>Create</h2>
 
-@using (Html.BeginForm())
-{
-@Html.AntiForgeryToken()
+    @using (Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
 
-<div class="form-horizontal mx-3">
+        <div class="form-horizontal mx-3">
    
-    <hr />
+        <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.PermissionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -58,7 +50,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" value="Kaydet" class="btn btn-primary" />
         </div>
     </div>
 </div>

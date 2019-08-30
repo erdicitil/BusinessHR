@@ -25,6 +25,7 @@ namespace BusinessHR.Admin.Controllers
             this.companyService = companyService;
             this.cityService = cityService;
             this.countryService = countryService;
+            this.regionService = regionService;
 
         }
         // GET: Companies

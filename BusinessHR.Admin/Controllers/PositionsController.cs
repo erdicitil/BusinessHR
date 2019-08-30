@@ -17,10 +17,12 @@ namespace BusinessHR.Admin.Controllers
     public class PositionsController : Controller
     {
         private readonly IPositionService positionService;
+        private readonly IDepartmentService departmentService;
 
-        public PositionsController(IPositionService positionService)
+        public PositionsController(IPositionService positionService, IDepartmentService departmentService)
         {
             this.positionService = positionService;
+            this.departmentService = departmentService;
         }
 
 
@@ -49,7 +51,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Positions/Create
         public ActionResult Create()
         {
-           
+            ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -66,7 +68,7 @@ namespace BusinessHR.Admin.Controllers
                 positionService.Insert(entity);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", position.DepartmentId);
             return View(position);
         }
 
@@ -82,7 +84,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            
+            ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", position.DepartmentId);
             return View(position);
         }
 
@@ -99,6 +101,7 @@ namespace BusinessHR.Admin.Controllers
                 positionService.Update(entity);
                 return RedirectToAction("Index");
             }
+            ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", position.DepartmentId);
             return View(position);
         }
 
