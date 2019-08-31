@@ -1,11 +1,30 @@
 ﻿@{
-    ViewBag.Title = "DEMO purpose Email Link";
+    ViewBag.Title = "Email Onayı";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<p class="text-info">
-    Please check your email and confirm your email address.
-</p>
-<p class="text-danger">
-    For DEMO only: You can click this link to confirm the email: <a href="@ViewBag.Link">link</a>
-    Please change this code to register an email service in IdentityConfig to send an email.
-</p>
+
+
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">@ViewBag.Title</div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+
+                    Lütfen e-postanızı kontrol edin ve gelen tıklayarak e-posta adresinizi onaylayın.
+
+                </div>
+                <div class="form-group" data-validate="Password is required">
+                    <div class="text-danger mx-3">
+                        DEMO:
+                        E-postayı onaylamak için bu <a href="@ViewBag.Link">bağlantıyı</a> kullanabilirsiniz:
+                        Test işlemleri bittikten sonra bu paragrafı kaldırınız.
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</div>

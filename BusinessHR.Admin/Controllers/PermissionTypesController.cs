@@ -14,6 +14,7 @@ using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
+    [Authorize]
     public class PermissionTypesController : Controller
     {
         private readonly IPermissionTypeService permissionTypeService;

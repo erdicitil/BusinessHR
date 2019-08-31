@@ -1,10 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Confirm Email";
+    ViewBag.Title = "Email Onayı";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div>
-    <p>
-        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-    </p>
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">@ViewBag.Title</div>
+        <div class="card-body">
+
+            <form>
+                <div class="form-group">
+
+                </div>
+                <div class="form-group">
+                    E-postanızı onayladığınız için teşekkür ederiz. Şimdi @Html.ActionLink("buraya", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) tıklayarak giriş yapabilirsiniz.
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>

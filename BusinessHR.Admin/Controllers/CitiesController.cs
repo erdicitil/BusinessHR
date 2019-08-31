@@ -10,6 +10,7 @@ using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
+    [Authorize]
     public class CitiesController : Controller
     {
         private readonly ICityService cityService;

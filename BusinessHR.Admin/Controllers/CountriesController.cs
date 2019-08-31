@@ -14,6 +14,7 @@ using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
+    [Authorize]
     public class CountriesController : Controller
     {
         private readonly ICountryService countryService;

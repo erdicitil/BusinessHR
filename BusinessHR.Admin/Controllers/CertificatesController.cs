@@ -14,6 +14,7 @@ using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
+    [Authorize]
     public class CertificatesController : Controller
     {
         private readonly ICertificateService certificateService;

@@ -53,7 +53,7 @@ namespace BusinessHR.Admin.Models
         [Required]
         [MaxLength(200)]
         [Display(Name = "Departman Adı")]
-        public Department DepartmentName { get; set; }
+        public string DepartmentName { get; set; }
         [Required]
         [MaxLength(200)]
         [Display(Name = "Unvanı")]
@@ -61,7 +61,7 @@ namespace BusinessHR.Admin.Models
         [Required]
         [MaxLength(200)]
         [Display(Name = "Unvan Adı")]
-        public Position PositionName { get; set; }
+        public string PositionName { get; set; }
         [Required]
         [MaxLength(4000)]
         [Display(Name = "Açıklama")]
@@ -87,14 +87,14 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Maaş Miktarı")]
         
 
-        public virtual Salary SalaryDurum { get; set; }
+        public string SalaryDurum { get; set; }
         
         [MaxLength(200)]
         [Display(Name = "Aldığı Sertifikalar")]
         public Guid? CertificateId { get; set; }
         [MaxLength(200)]
         [Display(Name = "Sertifika Adı")]
-        public virtual Certificate CertificateName { get; set; }
+        public string CertificateName { get; set; }
         [Display(Name = "Ülke")]
         public Guid CountryId { get; set; }
 
@@ -105,7 +105,7 @@ namespace BusinessHR.Admin.Models
         public string CityName { get; set; }
         public Guid RegionId { get; set; }
         [Display(Name = "İlçe Adı")]
-        public virtual Region RegionName { get; set; }
+        public string RegionName { get; set; }
 
     }
     

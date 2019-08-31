@@ -18,6 +18,6 @@ namespace BusinessHR.Admin.Models
         public Guid CompanyId { get; set; }
         
         [Display(Name = "Firma Adı")]
-        public virtual Company CompanyName { get; set; }
+        public string CompanyName { get; set; }
     }
 }
