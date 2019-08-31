@@ -67,11 +67,11 @@ namespace BusinessHR.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Certificates", t => t.CertificateId)
-                .ForeignKey("dbo.Countries", t => t.CountryId)
-                .ForeignKey("dbo.Regions", t => t.RegionId)
                 .ForeignKey("dbo.Cities", t => t.CityId)
+                .ForeignKey("dbo.Countries", t => t.CountryId)
                 .ForeignKey("dbo.Departments", t => t.DepartmentId)
                 .ForeignKey("dbo.Positions", t => t.PositionId)
+                .ForeignKey("dbo.Regions", t => t.RegionId)
                 .ForeignKey("dbo.Salaries", t => t.SalaryId)
                 .ForeignKey("dbo.Permissions", t => t.Permission_Id)
                 .Index(t => t.DepartmentId)
@@ -376,17 +376,17 @@ namespace BusinessHR.Data.Migrations
             DropForeignKey("dbo.Permissions", "PermissionTypeId", "dbo.PermissionTypes");
             DropForeignKey("dbo.Employees", "Permission_Id", "dbo.Permissions");
             DropForeignKey("dbo.Employees", "SalaryId", "dbo.Salaries");
+            DropForeignKey("dbo.Employees", "RegionId", "dbo.Regions");
             DropForeignKey("dbo.Employees", "PositionId", "dbo.Positions");
             DropForeignKey("dbo.Employees", "DepartmentId", "dbo.Departments");
+            DropForeignKey("dbo.Employees", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Employees", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Cities", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Companies", "RegionId", "dbo.Regions");
-            DropForeignKey("dbo.Employees", "RegionId", "dbo.Regions");
             DropForeignKey("dbo.Regions", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Positions", "DepartmentId", "dbo.Departments");
             DropForeignKey("dbo.Departments", "CompanyId", "dbo.Companies");
             DropForeignKey("dbo.Companies", "CountryId", "dbo.Countries");
-            DropForeignKey("dbo.Employees", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Companies", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Employees", "CertificateId", "dbo.Certificates");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
