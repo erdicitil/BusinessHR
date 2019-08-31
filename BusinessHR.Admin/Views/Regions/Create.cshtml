@@ -1,5 +1,6 @@
 ﻿@model BusinessHR.Admin.Models.RegionViewModel
-
+@using BusinessHR.Admin.Extensions;
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Create";
 }
@@ -40,7 +41,7 @@
             </div>
         </div>
 
-        
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Oluştur" class="btn btn-primary" /> | @Html.ActionLink("Listeye Geri Dön", "Index")

@@ -41,12 +41,12 @@ namespace IdentitySample.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two factor provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Parolanız değiştirildi."
+                : message == ManageMessageId.SetPasswordSuccess ? "Parolanız ayarlandı."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "İki faktör doğrulamanız ayarlandı."
+                : message == ManageMessageId.Error ? "Bir hata oluştu."
+                : message == ManageMessageId.AddPhoneSuccess ? "Telefon numarası eklendi."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Telefon numaranız kaldırıldı."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -121,7 +121,7 @@ namespace IdentitySample.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Güvenlik kodunuz: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -189,8 +189,8 @@ namespace IdentitySample.Controllers
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            ViewBag.Status = "For DEMO purposes only, the current code is " + code;
-            return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
+            ViewBag.Status = "DEMO: Dorğrulama Kodu: " + code + " Test işlemi bittikten sonra bu paragrafı siliniz.";
+            return phoneNumber == null ? View("Hata") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
         //
@@ -215,7 +215,7 @@ namespace IdentitySample.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            ModelState.AddModelError("", "Telefon numarası doğrulanamadı.");
             return View(model);
         }
 
@@ -310,14 +310,14 @@ namespace IdentitySample.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.RemoveLoginSuccess ? "Harici giriş kaldırıldı."
+                : message == ManageMessageId.Error ? "Bir hata oluştu."
                 : "";
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return View("Error");
+                return View("Hata");
             }
             var userLogins = await UserManager.GetLoginsAsync(userId);
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();

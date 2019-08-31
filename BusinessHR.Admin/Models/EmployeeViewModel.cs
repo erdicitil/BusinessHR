@@ -85,8 +85,6 @@ namespace BusinessHR.Admin.Models
         [Required]
         [MaxLength(200)]
         [Display(Name = "Maaş Miktarı")]
-        
-
         public string SalaryDurum { get; set; }
         
         [MaxLength(200)]
@@ -100,9 +98,11 @@ namespace BusinessHR.Admin.Models
 
         [Display(Name = "Ülke Adı")]
         public string CountryName { get; set; }
+        [Display(Name = "Şehir")]
         public Guid CityId { get; set; }
         [Display(Name = "Şehir Adı")]
         public string CityName { get; set; }
+        [Display(Name = "İlçe")]
         public Guid RegionId { get; set; }
         [Display(Name = "İlçe Adı")]
         public string RegionName { get; set; }

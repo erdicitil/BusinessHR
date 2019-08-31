@@ -3,23 +3,32 @@
     ViewBag.Title = "Add Phone Number";
 }
 
-<h2>@ViewBag.Title.</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Manage")" style="color:black">Kullanıcı</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("AddPhoneNumber","Manage")" style="color:black">Telefon Numarası Ekle</a></li>
+
+</ol>
+<h4 class="mx-3">Telefon Numarası Ekle</h4>
 
 @using (Html.BeginForm("AddPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Add a phone number.</h4>
+    
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
+        <span class="mx-3">Telefon Numarası</span>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Send verification code" />
+            <input type="submit" class="btn btn-primary" value="Doğrulama Kodunu Gönder" />
         </div>
     </div>
 }

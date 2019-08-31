@@ -68,6 +68,9 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
+            
+
+
 
             return View(region);
         }
@@ -85,6 +88,8 @@ namespace BusinessHR.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
+
+
             return View(region);
         }
 
@@ -102,6 +107,8 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
+
+
             return View(region);
         }
 
