@@ -24,6 +24,9 @@ namespace BusinessHR.Data.Builders
             builder.Property(b => b.Title).HasMaxLength(4000).IsRequired();
             builder.HasRequired(a => a.Salary).WithMany(b => b.Employees).HasForeignKey(a => a.SalaryId);
             builder.HasOptional(a => a.Certificate).WithMany(b => b.Employees).HasForeignKey(a => a.CertificateId);
+            builder.HasOptional(a => a.Country).WithMany(b => b.Employees).HasForeignKey(a => a.CountryId);
+            builder.HasOptional(a => a.City).WithMany(b => b.Employees).HasForeignKey(a => a.CityId);
+            builder.HasOptional(a => a.Region).WithMany(b => b.Employees).HasForeignKey(a => a.RegionId);
 
         }
     }

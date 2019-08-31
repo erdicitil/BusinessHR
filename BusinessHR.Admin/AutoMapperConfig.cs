@@ -42,13 +42,13 @@ namespace BusinessHR.Admin
             cfg.CreateMap<Position, PositionViewModel>().ForMember(
                 dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department.Name)).ReverseMap().ForMember(
                 dest => dest.Employees, opt => opt.Ignore());
-            
+
 
             cfg.CreateMap<Region, RegionViewModel>().ForMember(
-                dest => dest.CityName,opt => opt.MapFrom(src => src.City.Name)).ReverseMap().ForMember(
-                dest => dest.City, opt => opt.Ignore()).ForMember(
-                dest => dest.Employees, opt => opt.Ignore()).ForMember(
-                dest => dest.Companies, opt => opt.Ignore());
+             dest => dest.CityName,
+             opt => opt.MapFrom(src => src.City.Name)).ReverseMap().ForMember
+             (dest => dest.City, opt => opt.Ignore()).ForMember
+             (dest => dest.Employees, opt => opt.Ignore());
 
             cfg.CreateMap<Salary, SalaryViewModel>().ReverseMap().ForMember(
                 dest => dest.Employees, opt => opt.Ignore());
