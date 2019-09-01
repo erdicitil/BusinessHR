@@ -29,7 +29,7 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Şehir Adı")]
         public string CityName { get; set; }
         [Display(Name = "İlçe")]
-        public Guid RegionId { get; set; }
+        public Guid? RegionId { get; set; }
        
         [Display(Name = "İlçe Adı")]
         public string RegionName { get; set; }

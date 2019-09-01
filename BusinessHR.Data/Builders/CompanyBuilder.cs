@@ -19,7 +19,7 @@ namespace BusinessHR.Data.Builders
 
             builder.HasRequired(a => a.Country).WithMany(b => b.Companies).HasForeignKey(a => a.CountryId);
             builder.HasRequired(a => a.City).WithMany(b => b.Companies).HasForeignKey(a => a.CityId);
-            builder.HasRequired(a => a.Region).WithMany(b => b.Companies).HasForeignKey(a => a.RegionId);
+            builder.HasOptional(a => a.Region).WithMany(b => b.Companies).HasForeignKey(a => a.RegionId);
         }
     }
 }

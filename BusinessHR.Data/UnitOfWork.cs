@@ -18,10 +18,7 @@ namespace BusinessHR.Data
         {
            
                 db.SaveChanges();
-            
-            
-            
-            
+              
         }
     }
 

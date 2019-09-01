@@ -17,7 +17,7 @@ namespace BusinessHR.Model
 
         public Guid CityId { get; set; }
         public virtual City City { get; set; }
-        public Guid RegionId { get; set; }
+        public Guid? RegionId { get; set; }
         public virtual Region Region { get; set; }
     }
 }
