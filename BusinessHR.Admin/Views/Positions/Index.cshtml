@@ -5,8 +5,7 @@
 @{
     ViewBag.Title = "Pozisyon";
 }
-
-        <<ol class="breadcrumb">
+        <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <i class="fas fa-fw fa-home"></i>
                 <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
@@ -22,40 +21,43 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.DepartmentName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
+                    <thead>
 
-                <th></th>
-            </tr>
-
-
-            @foreach (var item in Model)
-            {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DepartmentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DepartmentName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
 
-                    <td>
-                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Sil", "Delete", new { id = item.Id })
-                    </td>
+                    <th>Eylemler</th>
                 </tr>
-            }
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                                <td nowrap>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
         </table>
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        </div>
     </div>
+</div>
