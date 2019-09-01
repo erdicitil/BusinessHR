@@ -41,7 +41,8 @@ namespace BusinessHR.Admin
 
             cfg.CreateMap<Position, PositionViewModel>().ForMember(
                 dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department.Name)).ReverseMap().ForMember(
-                dest => dest.Employees, opt => opt.Ignore());
+                dest => dest.Employees, opt => opt.Ignore()).ForMember(
+                dest => dest.Department, opt => opt.Ignore());
 
 
             cfg.CreateMap<Region, RegionViewModel>().ForMember(
@@ -67,7 +68,8 @@ namespace BusinessHR.Admin
             cfg.CreateMap<Department, DeparmentViewModel>().ForMember(
                 dest => dest.CompanyName,opt => opt.MapFrom(src => src.Company.Name)).ReverseMap().ForMember(
                 dest => dest.Positions, opt => opt.Ignore()).ForMember(
-                dest => dest.Employees, opt => opt.Ignore());
+                dest => dest.Employees, opt => opt.Ignore()).ForMember
+             (dest => dest.Company, opt => opt.Ignore());
 
             cfg.CreateMap<Employee, EmployeeViewModel>().ForMember(
                 dest => dest.CertificateName, opt => opt.MapFrom(src => src.Certificate.Name)).ForMember(

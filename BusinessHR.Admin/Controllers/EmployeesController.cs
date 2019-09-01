@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -80,14 +81,17 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( EmployeeViewModel employee)
+        public ActionResult Create( EmployeeViewModel employee, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
-            {
-                var entity = Mapper.Map<Employee>(employee);
-                employeeService.Insert(entity);
-                return RedirectToAction("Index");
-            }
+            
+                if (ModelState.IsValid)
+                {
+                    var entity = Mapper.Map<Employee>(employee);
+                    employeeService.Insert(entity);
+                    return RedirectToAction("Index");
+                }
+            
+            
 
             ViewBag.CertificateId = new SelectList(certificateService.GetAll(), "Id", "Name", employee.CertificateId);
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", employee.CityId);
@@ -168,6 +172,51 @@ namespace BusinessHR.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        public string UploadFile(HttpPostedFileBase upload)
+        {
+            //yüklenmek istenen dosya var mı?
+            if (upload != null && upload.ContentLength > 0)
+            {
+                //dosyanın uzantısını kontrol et.
+                var extension = Path.GetExtension(upload.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
+                {
+                    //uzantı doğru ise dosyanın yükeleneceği Uploads var mı? Kontrol et.
+                    if (Directory.Exists(Server.MapPath("~/Uploads")))
+                    {
+                        //dosya adındaki geçersiz karakterleri düzelt.
+                        string fileName = upload.FileName.ToLower();
+                        fileName = fileName.Replace("İ", "i");
+                        fileName = fileName.Replace("Ş", "s").Replace("ı", "i").Replace("Ğ", "g").Replace("ğ", "g");
+                        fileName = fileName.Replace("(", "");
+                        fileName = fileName.Replace(")", "");
+                        fileName = fileName.Replace(" ", "-");
+                        fileName = fileName.Replace(",", "");
+                        fileName = fileName.Replace("ö", "o");
+                        fileName = fileName.Replace("ü", "u");
+                        fileName = fileName.Replace("`", "");
+
+                        //aynı isimde dosya olabilir diye dosya adının önüne zaman pulu ekliyoruz. 
+                        /*Profesyonel siteler için guid kullanılabilir.32 haneli benzersiz bir sayı üretir. 
+                        Detaylı bilgi http://www.ugurkizmaz.com/YazilimMakale-1414-GUID-Nedir----Globally-Unique-Identifier.aspx */
+
+                        fileName = DateTime.Now.Ticks.ToString() + fileName;
+                        //dosyayı Uploads dizinine yükle.
+                        upload.SaveAs(Path.Combine(Server.MapPath("~/Uploads"), fileName));
+                        //yüklenen dosyanın adını geri döndür.
+                        return fileName;
+                    }
+                    else
+                    {
+                        throw new Exception("Upload dizini mevcut değil");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Dosya uzantısı .jpg, .gif ya da .png olmalıdır.");
+                }
+            }
+            return null;
+        }
     }
 }
