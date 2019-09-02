@@ -116,7 +116,7 @@ namespace BusinessHR.Data.Migrations
                         Address = c.String(maxLength: 500),
                         CountryId = c.Guid(nullable: false),
                         CityId = c.Guid(nullable: false),
-                        RegionId = c.Guid(nullable: false),
+                        RegionId = c.Guid(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(nullable: false),
                         UpdatedBy = c.String(),

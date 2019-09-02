@@ -16,7 +16,7 @@ namespace BusinessHR.Admin.Models
         public DateTime PermissionEndDate { get; set; }
         [Display(Name = "İzin Süresi")]
         public string PermissionTime { get; set; }
-        [MaxLength(50)]
+        
         [Display(Name = "İzin Türü")]
         public Guid PermissionTypeId { get; set; }
         [Display(Name = "İzin Türü Adı")]

@@ -11,7 +11,7 @@ namespace BusinessHR.Admin.Models
         
             public Guid Id { get; set; }
             [Required]
-            [MaxLength(50)]
+            [MaxLength(100)]
             [Display(Name = "Ülke Adı")]
             public string Name { get; set; }
             

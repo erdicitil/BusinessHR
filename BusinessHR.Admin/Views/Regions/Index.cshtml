@@ -1,60 +1,41 @@
 ﻿@model IEnumerable<BusinessHR.Admin.Models.RegionViewModel>
-@using BusinessHR.Admin.Extensions
-@using System.ComponentModel.DataAnnotations
 
 @{
-    ViewBag.Title = "İlçe";
+    ViewBag.Title = "Index";
 }
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Regions")" style="color:black">İlçeler</a></li>
+<h2>Index</h2>
 
-</ol>
-<h4 class="mx-4">İlçeler</h4>
-<hr />
 <p>
-    <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni İlçe</a>
+    @Html.ActionLink("Create New", "Create")
 </p>
-<div class="card-body">
-    <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CityName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        
+        <th></th>
+    </tr>
 
-                <th></th>
-            </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CityName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
-            }
-
-        </table>
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-    </div>
-</div>
+</table>

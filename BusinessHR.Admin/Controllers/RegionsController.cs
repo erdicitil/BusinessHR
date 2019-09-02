@@ -17,19 +17,19 @@ namespace BusinessHR.Admin.Controllers
     [Authorize]
     public class RegionsController : Controller
     {
-        private readonly IRegionService regionService;
         private readonly ICityService cityService;
-        public RegionsController(IRegionService regionService,ICityService cityService)
+        private readonly IRegionService regionService;
+        public RegionsController(IRegionService regionService, ICityService cityService)
         {
             this.regionService = regionService;
             this.cityService = cityService;
+            
         }
-
         // GET: Regions
         public ActionResult Index()
         {
-            var regions = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAll());
-            return View(regions);
+            var region = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAll());
+            return View(region);
         }
 
         // GET: Regions/Details/5
@@ -67,11 +67,8 @@ namespace BusinessHR.Admin.Controllers
                 regionService.Insert(entity);
                 return RedirectToAction("Index");
             }
+
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
-            
-
-
-
             return View(region);
         }
 
@@ -88,8 +85,6 @@ namespace BusinessHR.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
-
-
             return View(region);
         }
 
@@ -107,8 +102,6 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", region.CityId);
-
-
             return View(region);
         }
 
@@ -133,9 +126,9 @@ namespace BusinessHR.Admin.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             regionService.Delete(id);
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
-       
+        
     }
 }

@@ -1,10 +1,9 @@
-﻿using BusinessHR.Data;
+﻿
+
+using BusinessHR.Data;
 using BusinessHR.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessHR.Service
 {
@@ -41,10 +40,10 @@ namespace BusinessHR.Service
         {
             return regionRepository.GetAll();
         }
-        public IEnumerable<Region> GetAllByCityId(Guid cityId)
-        {
-            return regionRepository.GetAll(x => x.CityId == cityId, o => o.Name, false);
-        }
+        //public IEnumerable<Region> GetAllByCityId(Guid cityId)
+        //{
+        //    return regionRepository.GetAll(x => x.CityId == cityId, o => o.Name, false);
+        //}
 
         public void Insert(Region region)
         {
@@ -61,7 +60,7 @@ namespace BusinessHR.Service
     public interface IRegionService
     {
         IEnumerable<Region> GetAll();
-        IEnumerable<Region> GetAllByCityId(Guid cityId);
+        //IEnumerable<Region> GetAllByCityId(Guid cityId);
         Region Get(Guid id);
         void Insert(Region region);
         void Update(Region region);

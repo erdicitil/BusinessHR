@@ -1,31 +1,18 @@
 ﻿@model BusinessHR.Admin.Models.RegionViewModel
-@using BusinessHR.Admin.Extensions
-@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Edit";
 }
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Regions")" style="color:black">İlçeler</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Edit","Regions")" style="color:black">Düzenle</a></li>
-
-</ol>
-
-<h4 class="mx-3">İlçe Düzenle</h4>
-<hr />
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal mx-3">
-
+    <div class="form-horizontal">
+        <h4>Region</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -46,18 +33,18 @@
             </div>
         </div>
 
-        
+       
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Geri Dön", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
