@@ -20,7 +20,7 @@ namespace BusinessHR.Admin.Models
         public string LastName { get; set; }
         [MaxLength(200)]
         [Display(Name = "Adı Soyadı")]
-        public string FullName { get { return FirstName + " " + LastName; } }
+        public string FullName { get { return FirstName + " " + LastName; }  }
         [MaxLength(200)]
         [Display(Name = "Fotoğraf")]
         public string Photo { get; set; }
@@ -33,7 +33,7 @@ namespace BusinessHR.Admin.Models
         [MaxLength(11)]
         [Required]
         [Display(Name = "Kimlik Numarası")]
-        public int IdentityNumber { get; set; }
+        public string IdentityNumber { get; set; }
         [MaxLength(20)]
         [Display(Name = "Telefon Numarası")]
         [Required]
@@ -45,28 +45,30 @@ namespace BusinessHR.Admin.Models
         [MaxLength(500)]
         [Display(Name = "Adres")]
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
-        [MaxLength(200)]
+        
         [Display(Name = "Departman")]
         [Required]
         public Guid DepartmentId { get; set; }
         [Required]
-        [MaxLength(200)]
+        
         [Display(Name = "Departman Adı")]
         public string DepartmentName { get; set; }
         [Required]
-        [MaxLength(200)]
+        
         [Display(Name = "Unvanı")]
         public Guid PositionId { get; set; }
         [Required]
-        [MaxLength(200)]
+        
         [Display(Name = "Unvan Adı")]
         public string PositionName { get; set; }
-        [Required]
+        
         [MaxLength(4000)]
         [Display(Name = "Açıklama")]
+        [DataType(DataType.MultilineText)]
         public string Title { get; set; }
-        [MaxLength(100)]
+        
         [Display(Name = "Çalışma Durumu")]
         public WorkStatus WorkStatus { get; set; }
         [Display(Name = "Çalışma Türü")]
@@ -77,33 +79,33 @@ namespace BusinessHR.Admin.Models
         public DateTime CompanyWorkStartDate { get; set; }
 
         [Display(Name = "İşten Ayrılış Tarihi")]
-        public DateTime CompanyWorkEndDate { get; set; }
-        [MaxLength(200)]
+        public DateTime? CompanyWorkEndDate { get; set; }
+        
         [Display(Name = "Maaşı")]
 
         public Guid SalaryId { get; set; }
         [Required]
-        [MaxLength(200)]
+        
         [Display(Name = "Maaş Miktarı")]
         public string SalaryDurum { get; set; }
         
-        [MaxLength(200)]
+        
         [Display(Name = "Aldığı Sertifikalar")]
         public Guid? CertificateId { get; set; }
-        [MaxLength(200)]
+        
         [Display(Name = "Sertifika Adı")]
         public string CertificateName { get; set; }
         [Display(Name = "Ülke")]
-        public Guid CountryId { get; set; }
+        public Guid? CountryId { get; set; }
 
         [Display(Name = "Ülke Adı")]
         public string CountryName { get; set; }
         [Display(Name = "Şehir")]
-        public Guid CityId { get; set; }
+        public Guid? CityId { get; set; }
         [Display(Name = "Şehir Adı")]
         public string CityName { get; set; }
         [Display(Name = "İlçe")]
-        public Guid RegionId { get; set; }
+        public Guid? RegionId { get; set; }
         [Display(Name = "İlçe Adı")]
         public string RegionName { get; set; }
 

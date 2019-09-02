@@ -86,6 +86,17 @@ namespace BusinessHR.Admin.Controllers
             
                 if (ModelState.IsValid)
                 {
+                    
+                    try
+                        {
+                            employee.Photo = UploadFile(upload);
+                        }
+                        catch (Exception ex)
+                        {
+                            ViewBag.Error = ex.Message;
+                            return View(employee);
+
+                        }
                     var entity = Mapper.Map<Employee>(employee);
                     employeeService.Insert(entity);
                     return RedirectToAction("Index");
@@ -130,10 +141,25 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EmployeeViewModel employee)
+        public ActionResult Edit(EmployeeViewModel employee, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                
+                try
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        // yüklenen dosyanın adını entity'deki alana ata
+                        employee.Photo = UploadFile(upload);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+                    
+                    return View(employee);
+                }
                 var entity = Mapper.Map<Employee>(employee);
                 employeeService.Update(entity);
                 return RedirectToAction("Index");

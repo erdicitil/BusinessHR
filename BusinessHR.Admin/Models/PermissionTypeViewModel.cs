@@ -10,7 +10,7 @@ namespace BusinessHR.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "İzin Türü")]
         public string Name { get; set; }
     }

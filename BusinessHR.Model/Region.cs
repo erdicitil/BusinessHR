@@ -14,9 +14,7 @@ namespace BusinessHR.Model
 
         public virtual ICollection<Employee> Employees { get; set; }
 
-        
+
         public virtual ICollection<Company> Companies { get; set; }
-        
     }
 }
-

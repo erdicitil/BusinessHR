@@ -15,7 +15,7 @@ namespace BusinessHR.Model
         public Gender Gender { get; set; }
         
         public DateTime DateOfBirth { get; set; }
-        public int IdentityNumber { get; set; }
+        public string IdentityNumber { get; set; }
         public string Mobile { get; set; }
         public string Nationality { get; set; }
         public string Address { get; set; }

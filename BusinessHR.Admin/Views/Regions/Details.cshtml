@@ -1,24 +1,15 @@
 ﻿@model BusinessHR.Admin.Models.RegionViewModel
-@using BusinessHR.Admin.Extensions
-@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Details";
 }
-    <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Regions")" style="color:black">İlçeler</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Regions")" style="color:black">Detaylar</a></li>
 
-    </ol>
-    <h4 class="mx-3">İlçe Detayları</h4>
+<h2>Details</h2>
 
-    <div>
+<div>
+    <h4>Region</h4>
     <hr />
-    <dl class="dl-horizontal mx-3">
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.CityName)
         </dt>
@@ -36,9 +27,10 @@
         </dd>
 
 
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Geri Dön", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </p>

@@ -14,7 +14,6 @@ namespace BusinessHR.Admin.Models
         [MaxLength(100)]
         [Display(Name = "İlçe Adı")]
         public string Name { get; set; }
-        [MaxLength(100)]
         [Display(Name = "Şehir")]
         public Guid CityId { get; set; }
         [Display(Name = "Şehir Adı")]

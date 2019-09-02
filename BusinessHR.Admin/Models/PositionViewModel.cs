@@ -11,10 +11,10 @@ namespace BusinessHR.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "Pozisyon")]
         public string Name { get; set; }
-        [MaxLength(150)]
+        
         
         public Guid DepartmentId { get; set; }
         [Display(Name = "Bölüm Adı")]
