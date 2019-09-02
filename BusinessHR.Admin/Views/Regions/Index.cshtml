@@ -4,22 +4,36 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <i class="fas fa-fw fa-home"></i>
+            <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+        </li>
+        <li class="breadcrumb-item active"><a href="@Url.Action("Index","Regions")" style="color:black">İlçeler</a></li>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        
-        <th></th>
-    </tr>
+
+    </ol>
+    <h4 class="mx-4">İlçeler</h4>
+    <hr />
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni İlçe</a>
+    </p>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CityName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
+                
+            </tr>
+                    </thead>
+                <tbody>
 
 @foreach (var item in Model) {
     <tr>

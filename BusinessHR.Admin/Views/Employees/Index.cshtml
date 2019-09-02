@@ -5,29 +5,25 @@
     ViewBag.Title = "Çalışanlar";
 }
 
+
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
         <i class="fas fa-fw fa-home"></i>
         <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
     </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personel</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personeller</a></li>
 
 </ol>
 <h4 class="mx-4">Personeller</h4>
-
+<hr />
 <p>
-    @Html.ActionLink("Yeni Kişi", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni Personel</a>
 </p>
-
-
-
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    
-
                     <th>
                         @Html.DisplayNameFor(model => model.Photo)
                     </th>
@@ -42,7 +38,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.PositionName)
                     </th>
-                    
+
                     <th>
                         @Html.DisplayNameFor(model => model.WorkStatus)
                     </th>
@@ -50,37 +46,37 @@
 
                 </tr>
             </thead>
-            
+
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Photo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DepartmentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PositionName)
-                    </td>
-                   
-                    <td>
-                        @Html.DisplayFor(modelItem => item.WorkStatus)
-                    </td>
+                    <tr>
 
-                    <td nowrap>
-                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
-                        @Html.ActionLink("Personel Detayları", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
-                        @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Photo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
 
-                </tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DepartmentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkStatus)
+                        </td>
+
+                        <td nowrap>
+                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Personel Detayları", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+
+                    </tr>
                 }
             </tbody>
         </table>

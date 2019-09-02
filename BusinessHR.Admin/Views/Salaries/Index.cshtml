@@ -17,8 +17,9 @@
         <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni Maaş</a>
     </p>
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Maas)
@@ -41,10 +42,11 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Durum)
                     </th>
+                    
 
-                   
                 </tr>
-
+                </thead>
+            <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -69,19 +71,20 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Durum)
                         </td>
-                        <
-                        <td>
-                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id } , new {@class = "btn btn-success btn-sm" }) 
-                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id } , new { @class = "btn btn-info btn-sm" }) 
-                            @Html.ActionLink("Sil", "Delete", new { id = item.Id } , new { @class = "btn btn-danger btn-sm" })
+
+                        <td nowrap>
+                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                         </td>
                     </tr>
                 }
+            </tbody>
 
-            </table>
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-            </div>
-        </div>
+        </table>
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+    </div>
+</div>
 

@@ -4,8 +4,9 @@
 
 @{
     ViewBag.Title = "İzin";
-}
-        <ol class="breadcrumb">
+ } 
+
+          <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <i class="fas fa-fw fa-home"></i>
                 <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
@@ -21,7 +22,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            
+                    <thead>
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.PermissionTypeName)
@@ -34,39 +35,41 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.PermissionTime)
-                    </th>
-
-                    <th></th>
+                    </th>                    
                 </tr>
+                        </thead>
+                    <tbody>
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PermissionTypeName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PermissionStartDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PermissionEndDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PermissionTime)
-                        </td>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PermissionTypeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PermissionStartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PermissionEndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PermissionTime)
+                                </td>
 
 
-                        <td>
-                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
-                }
+                                <td nowrap>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
 
-            </table>
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
+                            </tr>
+                        }
+                    </tbody>
+
+        </table>
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
     </div>
 </div>
