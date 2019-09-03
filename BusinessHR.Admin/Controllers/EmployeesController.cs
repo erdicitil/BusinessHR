@@ -201,19 +201,21 @@ namespace BusinessHR.Admin.Controllers
         public string UploadFile(HttpPostedFileBase upload)
         {
             //yüklenmek istenen dosya var mı?
+
             if (upload != null && upload.ContentLength > 0)
             {
                 //dosyanın uzantısını kontrol et.
                 var extension = Path.GetExtension(upload.FileName).ToLower();
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
-                    //uzantı doğru ise dosyanın yükeleneceği Uploads var mı? Kontrol et.
+                    //uzantı doğruysa dosyanın yükleneceği Uploads dizini var mı kontrol et.
                     if (Directory.Exists(Server.MapPath("~/Uploads")))
                     {
-                        //dosya adındaki geçersiz karakterleri düzelt.
+                        //dosya adındaki geçersiz karakterleri düzelt
                         string fileName = upload.FileName.ToLower();
                         fileName = fileName.Replace("İ", "i");
-                        fileName = fileName.Replace("Ş", "s").Replace("ı", "i").Replace("Ğ", "g").Replace("ğ", "g");
+                        fileName = fileName.Replace("Ş", "s");
+                        fileName = fileName.Replace("ı", "i");
                         fileName = fileName.Replace("(", "");
                         fileName = fileName.Replace(")", "");
                         fileName = fileName.Replace(" ", "-");
@@ -221,25 +223,25 @@ namespace BusinessHR.Admin.Controllers
                         fileName = fileName.Replace("ö", "o");
                         fileName = fileName.Replace("ü", "u");
                         fileName = fileName.Replace("`", "");
+                        fileName = fileName.Replace("Ğ", "g");
+                        fileName = fileName.Replace("ğ", "g");
 
-                        //aynı isimde dosya olabilir diye dosya adının önüne zaman pulu ekliyoruz. 
-                        /*Profesyonel siteler için guid kullanılabilir.32 haneli benzersiz bir sayı üretir. 
-                        Detaylı bilgi http://www.ugurkizmaz.com/YazilimMakale-1414-GUID-Nedir----Globally-Unique-Identifier.aspx */
-
+                        //aynı isimde dosya olabilir diye dosya adının önüne zaman pulu ekliyoruz.
                         fileName = DateTime.Now.Ticks.ToString() + fileName;
-                        //dosyayı Uploads dizinine yükle.
+                        //dosyayı Uploads dizinine yükle
                         upload.SaveAs(Path.Combine(Server.MapPath("~/Uploads"), fileName));
                         //yüklenen dosyanın adını geri döndür.
                         return fileName;
                     }
                     else
                     {
-                        throw new Exception("Upload dizini mevcut değil");
+                        throw new Exception("Uploads dizini mevcut değil");
                     }
+
                 }
                 else
                 {
-                    throw new Exception("Dosya uzantısı .jpg, .gif ya da .png olmalıdır.");
+                    throw new Exception("Dosya uzantısı .jpg,.gif ya da .png olmalıdır.");
                 }
             }
             return null;
