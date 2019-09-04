@@ -53,8 +53,9 @@ namespace BusinessHR.Admin
              (dest => dest.Employees, opt => opt.Ignore());
 
             cfg.CreateMap<Salary, SalaryViewModel>().ForMember(
-                dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FirstName + " " + src.Employee.LastName)).ReverseMap().ForMember(
-                dest => dest.Employees, opt => opt.Ignore());
+                dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FullName)).ReverseMap().ForMember(
+                dest => dest.Employees, opt => opt.Ignore()).ForMember(
+                dest => dest.Employee, opt => opt.Ignore());
 
 
 

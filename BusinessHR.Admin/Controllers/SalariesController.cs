@@ -29,7 +29,7 @@ namespace BusinessHR.Admin.Controllers
         // GET: Salaries
         public ActionResult Index()
         {
-            var salaries = Mapper.Map<IEnumerable<SalaryViewModel>>(employeeService.GetAll());
+            var salaries = Mapper.Map<IEnumerable<SalaryViewModel>>(salaryService.GetAll());
             return View(salaries);
         }
 
@@ -40,7 +40,7 @@ namespace BusinessHR.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(employeeService.Get(id.Value));
+            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(salaryService.Get(id.Value));
             if (salary == null)
             {
                 return HttpNotFound();
