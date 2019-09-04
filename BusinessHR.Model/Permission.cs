@@ -10,7 +10,8 @@ namespace BusinessHR.Model
     {      
         public DateTime PermissionStartDate { get; set; }
         public DateTime PermissionEndDate { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; }
+        public Guid EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
         public string PermissionTime { get; set; }
         public Guid PermissionTypeId { get; set; }
         public virtual PermissionType PermissionType { get; set; }

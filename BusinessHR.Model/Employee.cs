@@ -19,15 +19,17 @@ namespace BusinessHR.Model
         public string Mobile { get; set; }
         public string Nationality { get; set; }
         public string Address { get; set; }
-        public Guid DepartmentId { get; set; }
-        public Department Department  { get; set; }
-        public Guid PositionId { get; set; }
-        public Position Position { get; set; }
+        public Guid? DepartmentId { get; set; }
+        public virtual Department Department  { get; set; }
+        public Guid? PositionId { get; set; }
+        public virtual Position Position { get; set; }
         public string Title { get; set; }
         public DateTime CompanyWorkStartDate { get; set; }
         public DateTime? CompanyWorkEndDate { get; set; }
-        public Guid SalaryId { get; set; }
+        public Guid? SalaryId { get; set; }
         public virtual Salary Salary { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual ICollection<Salary> Salaries { get; set; }
         public Guid? CertificateId { get; set; }
         public virtual Certificate Certificate { get; set; }
         public Guid? CountryId { get; set; }

@@ -1,30 +1,29 @@
 ﻿@model BusinessHR.Admin.Models.SalaryViewModel
-@using BusinessHR.Admin.Extensions
-@using System.ComponentModel.DataAnnotations
+
 @{
     ViewBag.Title = "Details";
 }
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Salaries")" style="color:black">Maaşlar</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Salaries")" style="color:black">Detaylar</a></li>
 
-</ol>
+<h2>Details</h2>
 
-<h4 class="mx-3">Maaş Detayları</h4>
 <div>
-    
+    <h4>Salary</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Maas)
+            @Html.DisplayNameFor(model => model.EmployeeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Maas)
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryDate)
         </dd>
 
         <dt>
@@ -36,11 +35,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NetMaas)
+            @Html.DisplayNameFor(model => model.SGKPrim)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NetMaas)
+            @Html.DisplayFor(model => model.SGKPrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IssizlikSigortasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IssizlikSigortasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DamgaVergisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DamgaVergisi)
         </dd>
 
         <dt>
@@ -60,26 +75,50 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Odenen)
+            @Html.DisplayNameFor(model => model.NetMaas)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Odenen)
+            @Html.DisplayFor(model => model.NetMaas)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Durum)
+            @Html.DisplayNameFor(model => model.Eklemeler)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Durum)
+            @Html.DisplayFor(model => model.Eklemeler)
         </dd>
 
-       
+        <dt>
+            @Html.DisplayNameFor(model => model.Kesintiler)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kesintiler)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToplamOdenen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToplamOdenen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryStatus)
+        </dd>
+
+        
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Geri Dön", "Index")
 </p>

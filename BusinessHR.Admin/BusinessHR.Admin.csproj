@@ -2086,11 +2086,6 @@
     <Content Include="Views\Departments\Details.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Permissions\Create.cshtml" />
     <Content Include="Views\Permissions\Delete.cshtml" />
     <Content Include="Views\Permissions\Details.cshtml" />
@@ -2111,17 +2106,22 @@
     <Content Include="Views\Regions\Details.cshtml" />
     <Content Include="Views\Regions\Edit.cshtml" />
     <Content Include="Views\Regions\Index.cshtml" />
-    <Content Include="Views\Salaries\Create.cshtml" />
-    <Content Include="Views\Salaries\Delete.cshtml" />
-    <Content Include="Views\Salaries\Details.cshtml" />
-    <Content Include="Views\Salaries\Edit.cshtml" />
-    <Content Include="Views\Salaries\Index.cshtml" />
     <Content Include="Views\Cities\Create.cshtml" />
     <Content Include="Views\Cities\Delete.cshtml" />
     <Content Include="Views\Cities\Details.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Salaries\Create.cshtml" />
+    <Content Include="Views\Salaries\Delete.cshtml" />
+    <Content Include="Views\Salaries\Details.cshtml" />
+    <Content Include="Views\Salaries\Edit.cshtml" />
+    <Content Include="Views\Salaries\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

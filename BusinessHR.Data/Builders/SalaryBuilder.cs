@@ -12,7 +12,7 @@ namespace BusinessHR.Data.Builders
     {
         public SalaryBuilder(EntityTypeConfiguration<Salary> builder)
         {
-            builder.Property(b => b.Durum).HasMaxLength(100).IsRequired();
+            builder.Property(b => b.SalaryDate).IsRequired();
         }
     }
 }

@@ -49,17 +49,17 @@ namespace BusinessHR.Admin.Models
         public string Address { get; set; }
         
         [Display(Name = "Departman")]
-        [Required]
-        public Guid DepartmentId { get; set; }
-        [Required]
+        
+        public Guid? DepartmentId { get; set; }
+        
         
         [Display(Name = "Departman Adı")]
         public string DepartmentName { get; set; }
-        [Required]
+        
         
         [Display(Name = "Unvanı")]
-        public Guid PositionId { get; set; }
-        [Required]
+        public Guid? PositionId { get; set; }
+        
         
         [Display(Name = "Unvan Adı")]
         public string PositionName { get; set; }
@@ -83,13 +83,20 @@ namespace BusinessHR.Admin.Models
         
         [Display(Name = "Maaşı")]
 
-        public Guid SalaryId { get; set; }
-        [Required]
+        public Guid? SalaryId { get; set; }
+        
         
         [Display(Name = "Maaş Miktarı")]
-        public string SalaryDurum { get; set; }
+        public string SalaryPaid { get; set; }
+        [Display(Name = "İzin")]
+        public Guid? PermissionId { get; set; }
         
+
         
+        [Display(Name = "İzin Tarihi")]
+        public string PermissionStartDate { get; set; }
+
+
         [Display(Name = "Aldığı Sertifikalar")]
         public Guid? CertificateId { get; set; }
         

@@ -21,6 +21,10 @@ namespace BusinessHR.Admin.Models
         public Guid PermissionTypeId { get; set; }
         [Display(Name = "İzin Türü Adı")]
         public string PermissionTypeName { get; set; }
-       
+        [Display(Name = "Personel")]
+        public Guid EmployeeId { get; set; }
+        [Display(Name = "Personel Adı")]
+        public string EmployeeName { get; set; }
+
     }
 }

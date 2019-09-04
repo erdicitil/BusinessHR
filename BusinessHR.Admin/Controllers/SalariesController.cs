@@ -14,31 +14,33 @@ using BusinessHR.Service;
 
 namespace BusinessHR.Admin.Controllers
 {
-    [Authorize]
     public class SalariesController : Controller
     {
         private readonly ISalaryService salaryService;
+        private readonly IEmployeeService employeeService;
 
-        public SalariesController(ISalaryService salaryService)
+        public SalariesController(IEmployeeService employeeService, ISalaryService salaryService)
         {
+            this.employeeService = employeeService;
             this.salaryService = salaryService;
-        }
 
-        // GET: Certificates
+
+        }
+        // GET: Salaries
         public ActionResult Index()
         {
-            var salary = Mapper.Map<IEnumerable<SalaryViewModel>>(salaryService.GetAll());
-            return View(salary);
+            var salaries = Mapper.Map<IEnumerable<SalaryViewModel>>(employeeService.GetAll());
+            return View(salaries);
         }
 
-        // GET: Certificates/Details/5
+        // GET: Salaries/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(salaryService.Get(id.Value));
+            SalaryViewModel salary = Mapper.Map<SalaryViewModel>(employeeService.Get(id.Value));
             if (salary == null)
             {
                 return HttpNotFound();
@@ -46,31 +48,33 @@ namespace BusinessHR.Admin.Controllers
             return View(salary);
         }
 
-        // GET: Certificates/Create
+        // GET: Salaries/Create
         public ActionResult Create()
         {
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FirstName");
             return View();
         }
 
-        // POST: Certificates/Create
+        // POST: Salaries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SalaryViewModel salary)
         {
-            if (ModelState.IsValid)
-            {
-                var entity = Mapper.Map<Salary>(salary);
-                salaryService.Insert(entity);
-                return RedirectToAction("Index");
-            }
+           
+                if (ModelState.IsValid)
+                {
+                    var entity = Mapper.Map<Salary>(salary);
+                    salaryService.Insert(entity);
+                    return RedirectToAction("Index");
+                }
 
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FirstName", salary.EmployeeId);
             return View(salary);
         }
 
-
-        // GET: Certificates/Edit/5
+        // GET: Salaries/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -82,10 +86,11 @@ namespace BusinessHR.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FirstName", salary.EmployeeId);
             return View(salary);
         }
 
-        // POST: Certificates/Edit/5
+        // POST: Salaries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,10 +103,11 @@ namespace BusinessHR.Admin.Controllers
                 salaryService.Update(entity);
                 return RedirectToAction("Index");
             }
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FirstName", salary.EmployeeId);
             return View(salary);
         }
 
-        // GET: Certificates/Delete/5
+        // GET: Salaries/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -116,7 +122,7 @@ namespace BusinessHR.Admin.Controllers
             return View(salary);
         }
 
-        // POST: Certificates/Delete/5
+        // POST: Salaries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
@@ -125,6 +131,6 @@ namespace BusinessHR.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
+        
     }
 }

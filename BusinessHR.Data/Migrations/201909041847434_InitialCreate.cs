@@ -3,7 +3,7 @@ namespace BusinessHR.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCrate : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -37,7 +37,7 @@ namespace BusinessHR.Data.Migrations
                         Photo = c.String(maxLength: 200),
                         Gender = c.Int(nullable: false),
                         DateOfBirth = c.DateTime(nullable: false),
-                        IdentityNumber = c.Int(nullable: false),
+                        IdentityNumber = c.String(maxLength: 11),
                         Mobile = c.String(nullable: false, maxLength: 20),
                         Nationality = c.String(nullable: false, maxLength: 100),
                         Address = c.String(nullable: false, maxLength: 100),
@@ -63,7 +63,6 @@ namespace BusinessHR.Data.Migrations
                         IpAddress = c.String(),
                         UserAgent = c.String(),
                         Location = c.String(),
-                        Permission_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Certificates", t => t.CertificateId)
@@ -73,22 +72,20 @@ namespace BusinessHR.Data.Migrations
                 .ForeignKey("dbo.Positions", t => t.PositionId)
                 .ForeignKey("dbo.Regions", t => t.RegionId)
                 .ForeignKey("dbo.Salaries", t => t.SalaryId)
-                .ForeignKey("dbo.Permissions", t => t.Permission_Id)
                 .Index(t => t.DepartmentId)
                 .Index(t => t.PositionId)
                 .Index(t => t.SalaryId)
                 .Index(t => t.CertificateId)
                 .Index(t => t.CountryId)
                 .Index(t => t.CityId)
-                .Index(t => t.RegionId)
-                .Index(t => t.Permission_Id);
+                .Index(t => t.RegionId);
             
             CreateTable(
                 "dbo.Cities",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CountryId = c.Guid(nullable: false),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(nullable: false),
@@ -116,7 +113,7 @@ namespace BusinessHR.Data.Migrations
                         Address = c.String(maxLength: 500),
                         CountryId = c.Guid(nullable: false),
                         CityId = c.Guid(nullable: false),
-                        RegionId = c.Guid(nullable: false),
+                        RegionId = c.Guid(),
                         CreatedBy = c.String(),
                         CreatedAt = c.DateTime(nullable: false),
                         UpdatedBy = c.String(),
@@ -227,38 +224,13 @@ namespace BusinessHR.Data.Migrations
                 .Index(t => t.CityId);
             
             CreateTable(
-                "dbo.Salaries",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false),
-                        Maas = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        BrutMaas = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        NetMaas = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        AGI = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        KGV = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Odenen = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Durum = c.String(nullable: false, maxLength: 100),
-                        CreatedBy = c.String(),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedBy = c.String(),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        IsDeleted = c.Boolean(nullable: false),
-                        DeletedBy = c.String(),
-                        DeletedAt = c.DateTime(),
-                        IsActive = c.Boolean(nullable: false),
-                        IpAddress = c.String(),
-                        UserAgent = c.String(),
-                        Location = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Permissions",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
                         PermissionStartDate = c.DateTime(nullable: false),
                         PermissionEndDate = c.DateTime(nullable: false),
+                        EmployeeId = c.Guid(nullable: false),
                         PermissionTime = c.String(nullable: false, maxLength: 100),
                         PermissionTypeId = c.Guid(nullable: false),
                         CreatedBy = c.String(),
@@ -274,7 +246,9 @@ namespace BusinessHR.Data.Migrations
                         Location = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId)
                 .ForeignKey("dbo.PermissionTypes", t => t.PermissionTypeId)
+                .Index(t => t.EmployeeId)
                 .Index(t => t.PermissionTypeId);
             
             CreateTable(
@@ -296,6 +270,40 @@ namespace BusinessHR.Data.Migrations
                         Location = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Salaries",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        SalaryDate = c.DateTime(nullable: false),
+                        BrutMaas = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SGKPrim = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IssizlikSigortasi = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        DamgaVergisi = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        AGI = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        KGV = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        NetMaas = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Eklemeler = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Kesintiler = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ToplamOdenen = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SalaryStatus = c.Int(nullable: false),
+                        EmployeeId = c.Guid(nullable: false),
+                        CreatedBy = c.String(),
+                        CreatedAt = c.DateTime(nullable: false),
+                        UpdatedBy = c.String(),
+                        UpdatedAt = c.DateTime(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        DeletedBy = c.String(),
+                        DeletedAt = c.DateTime(),
+                        IsActive = c.Boolean(nullable: false),
+                        IpAddress = c.String(),
+                        UserAgent = c.String(),
+                        Location = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId)
+                .Index(t => t.EmployeeId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -373,11 +381,12 @@ namespace BusinessHR.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Permissions", "PermissionTypeId", "dbo.PermissionTypes");
-            DropForeignKey("dbo.Employees", "Permission_Id", "dbo.Permissions");
             DropForeignKey("dbo.Employees", "SalaryId", "dbo.Salaries");
+            DropForeignKey("dbo.Salaries", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Employees", "RegionId", "dbo.Regions");
             DropForeignKey("dbo.Employees", "PositionId", "dbo.Positions");
+            DropForeignKey("dbo.Permissions", "PermissionTypeId", "dbo.PermissionTypes");
+            DropForeignKey("dbo.Permissions", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Employees", "DepartmentId", "dbo.Departments");
             DropForeignKey("dbo.Employees", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Employees", "CityId", "dbo.Cities");
@@ -395,7 +404,9 @@ namespace BusinessHR.Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Salaries", new[] { "EmployeeId" });
             DropIndex("dbo.Permissions", new[] { "PermissionTypeId" });
+            DropIndex("dbo.Permissions", new[] { "EmployeeId" });
             DropIndex("dbo.Regions", new[] { "CityId" });
             DropIndex("dbo.Positions", new[] { "DepartmentId" });
             DropIndex("dbo.Departments", new[] { "CompanyId" });
@@ -403,7 +414,6 @@ namespace BusinessHR.Data.Migrations
             DropIndex("dbo.Companies", new[] { "CityId" });
             DropIndex("dbo.Companies", new[] { "CountryId" });
             DropIndex("dbo.Cities", new[] { "CountryId" });
-            DropIndex("dbo.Employees", new[] { "Permission_Id" });
             DropIndex("dbo.Employees", new[] { "RegionId" });
             DropIndex("dbo.Employees", new[] { "CityId" });
             DropIndex("dbo.Employees", new[] { "CountryId" });
@@ -416,9 +426,9 @@ namespace BusinessHR.Data.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Salaries");
             DropTable("dbo.PermissionTypes");
             DropTable("dbo.Permissions");
-            DropTable("dbo.Salaries");
             DropTable("dbo.Regions");
             DropTable("dbo.Positions");
             DropTable("dbo.Departments");

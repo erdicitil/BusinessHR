@@ -38,7 +38,7 @@ namespace BusinessHR.Admin.Controllers
             this.regionService = regionService;
             this.salaryService = salaryService;
 
-            
+
         }
 
         // GET: Employees
@@ -81,29 +81,29 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
-        public ActionResult Create( EmployeeViewModel employee, HttpPostedFileBase upload)
+
+        public ActionResult Create(EmployeeViewModel employee, HttpPostedFileBase upload)
         {
-            
-                if (ModelState.IsValid)
-                {
+
+            if (ModelState.IsValid)
+            {
                 var entity = Mapper.Map<Employee>(employee);
                 try
-                        {
-                            employee.Photo = UploadFile(upload);
-                        }
-                        catch (Exception ex)
-                        {
-                            ViewBag.Error = ex.Message;
-                            return View(employee);
-
-                        }
-                    
-                    employeeService.Insert(entity);
-                    return RedirectToAction("Index");
+                {
+                    employee.Photo = UploadFile(upload);
                 }
-            
-            
+                catch (Exception ex)
+                {
+                    ViewBag.Error = ex.Message;
+                    return View(employee);
+
+                }
+
+                employeeService.Insert(entity);
+                return RedirectToAction("Index");
+            }
+
+
 
             ViewBag.CertificateId = new SelectList(certificateService.GetAll(), "Id", "Name", employee.CertificateId);
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", employee.CityId);
@@ -142,12 +142,12 @@ namespace BusinessHR.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+
         public ActionResult Edit(EmployeeViewModel employee, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                
+
                 try
                 {
                     if (upload != null && upload.ContentLength > 0)
@@ -159,7 +159,7 @@ namespace BusinessHR.Admin.Controllers
                 catch (Exception ex)
                 {
                     ViewBag.Error = ex.Message;
-                    
+
                     return View(employee);
                 }
                 var entity = Mapper.Map<Employee>(employee);

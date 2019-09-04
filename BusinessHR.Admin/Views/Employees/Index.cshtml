@@ -1,23 +1,13 @@
 ﻿@model IEnumerable<BusinessHR.Admin.Models.EmployeeViewModel>
-@using BusinessHR.Admin.Extensions
-@using System.ComponentModel.DataAnnotations
+
 @{
-    ViewBag.Title = "Çalışanlar";
+    ViewBag.Title = "Index";
 }
 
+<h2>Index</h2>
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personeller</a></li>
-
-</ol>
-<h4 class="mx-4">Personeller</h4>
-<hr />
 <p>
-    <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni Personel</a>
+    @Html.ActionLink("Create New", "Create")
 </p>
 <div class="card-body">
     <div class="table-responsive">
@@ -25,13 +15,12 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Photo)
+                        @Html.DisplayNameFor(model => model.IdentityNumber)
                     </th>
-
                     <th>
-                        @Html.DisplayNameFor(model => model.FullName)
+                        @Html.DisplayNameFor(model => model.FirstName) @Html.DisplayNameFor(model => model.LastName)
                     </th>
-
+                    <
                     <th>
                         @Html.DisplayNameFor(model => model.DepartmentName)
                     </th>
@@ -39,44 +28,41 @@
                         @Html.DisplayNameFor(model => model.PositionName)
                     </th>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.WorkStatus)
-                    </th>
-                    <th>Eylemler</th>
-
+                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                <tr>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Photo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdentityNumber)
+                    </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DepartmentName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PositionName)
-                        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.WorkStatus)
-                        </td>
 
-                        <td nowrap>
-                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
-                            @Html.ActionLink("Personel Detayları", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
-                            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                        </td>
 
-                    </tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PositionName)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+
+
+                </tr>
                 }
             </tbody>
         </table>
@@ -85,3 +71,4 @@
         </a>
     </div>
 </div>
+

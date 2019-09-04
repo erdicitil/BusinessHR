@@ -140,6 +140,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="Salary.cs" />
+    <Compile Include="SalaryStatus.cs" />
     <Compile Include="WorkStatus.cs" />
     <Compile Include="WorkType.cs" />
   </ItemGroup>

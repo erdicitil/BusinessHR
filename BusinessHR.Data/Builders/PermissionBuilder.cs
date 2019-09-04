@@ -14,6 +14,7 @@ namespace BusinessHR.Data
         {
             builder.Property(b => b.PermissionTime).HasMaxLength(100).IsRequired();
             builder.HasRequired(a => a.PermissionType).WithMany(b => b.Permissions).HasForeignKey(a => a.PermissionTypeId);
+            builder.HasRequired(a => a.Employee).WithMany(b => b.Permissions).HasForeignKey(a => a.EmployeeId);
 
         }
     }

@@ -32,9 +32,10 @@ namespace BusinessHR.Admin
                 dest => dest.Companies, opt => opt.Ignore());
 
             cfg.CreateMap<Permission, PermissionViewModel>().ForMember(
-                dest => dest.PermissionTypeName, opt => opt.MapFrom(src => src.PermissionType.Name)).ReverseMap().ForMember(
+                dest => dest.PermissionTypeName, opt => opt.MapFrom(src => src.PermissionType.Name)).ForMember(
+                dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FirstName + " " + src.Employee.LastName)).ReverseMap().ForMember(
                 dest => dest.PermissionType, opt => opt.Ignore()).ForMember(
-                dest => dest.Employees, opt => opt.Ignore());
+                dest => dest.Employee, opt => opt.Ignore());
 
             cfg.CreateMap<PermissionType, PermissionTypeViewModel>().ReverseMap().ForMember(
                 dest => dest.Permissions, opt => opt.Ignore());
@@ -51,7 +52,8 @@ namespace BusinessHR.Admin
              (dest => dest.Companies, opt => opt.Ignore()).ForMember
              (dest => dest.Employees, opt => opt.Ignore());
 
-            cfg.CreateMap<Salary, SalaryViewModel>().ReverseMap().ForMember(
+            cfg.CreateMap<Salary, SalaryViewModel>().ForMember(
+                dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FirstName + " " + src.Employee.LastName)).ReverseMap().ForMember(
                 dest => dest.Employees, opt => opt.Ignore());
 
 
@@ -75,12 +77,18 @@ namespace BusinessHR.Admin
                 dest => dest.CertificateName, opt => opt.MapFrom(src => src.Certificate.Name)).ForMember(
                 dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department.Name)).ForMember(
                 dest => dest.PositionName, opt => opt.MapFrom(src => src.Position.Name)).ForMember(
-                dest => dest.SalaryDurum, opt => opt.MapFrom(src => src.Salary.Durum)).ReverseMap().ForMember(
+                dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ForMember(
+                dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name)).ForMember(
+                dest => dest.RegionName, opt => opt.MapFrom(src => src.Region.Name)).ForMember(
+                dest => dest.SalaryPaid, opt => opt.MapFrom(src => src.Salary.ToplamOdenen)).ReverseMap().ForMember(
                 dest => dest.Certificate, opt => opt.Ignore()).ForMember(
                 dest => dest.Department, opt => opt.Ignore()).ForMember(
                 dest => dest.Position, opt => opt.Ignore()).ForMember(
                 dest => dest.Salary, opt => opt.Ignore()).ForMember(
-                dest => dest.FullName, opt => opt.Ignore());
+                dest => dest.Country, opt => opt.Ignore()).ForMember(
+                dest => dest.City, opt => opt.Ignore()).ForMember(
+                dest => dest.Region, opt => opt.Ignore()).ForMember(
+                dest => dest.Salaries, opt => opt.Ignore());
             //en altta kalsın
             Mapper.Initialize(cfg);
             
