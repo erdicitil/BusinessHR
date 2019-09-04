@@ -46,10 +46,10 @@ namespace BusinessHR.Admin.Models
         
         [Display(Name = "Maaş Durumu")]
         public SalaryStatus SalaryStatus { get; set; }
-        [Required]
+        
         [Display(Name = "Personel")]
-        public Guid EmployeeId { get; set; }
-        [Required]
+        public Guid? EmployeeId { get; set; }
+        
         [Display(Name = "Personel Adı")]
         public string EmployeeName { get; set; }
 
