@@ -24,7 +24,7 @@ namespace BusinessHR.Model
         public Guid? PositionId { get; set; }
         public virtual Position Position { get; set; }
         public string Title { get; set; }
-        public DateTime CompanyWorkStartDate { get; set; }
+        public DateTime? CompanyWorkStartDate { get; set; }
         public DateTime? CompanyWorkEndDate { get; set; }
         
         public virtual ICollection<Permission> Permissions { get; set; }

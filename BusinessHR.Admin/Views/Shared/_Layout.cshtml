@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/css/datepicker.css">
+    
 </head>
 
 <body id="page-top">
@@ -54,7 +56,7 @@
 
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
-            
+
             <li class="nav-item active">
                 <a class="nav-link" href="@Url.Action("Index","Home")">
                     <i class="fas fa-fw fa-home"></i>
@@ -69,7 +71,7 @@
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
                     <a class="dropdown-item" href="@Url.Action("Index","Companies")"><i class="fas fa-fw fa-building"></i> Firma Bilgileri</a>
-                    
+
                     <a class="dropdown-item" href="@Url.Action("Index","Departments")"><i class="fas fa-fw fa-home"></i> Departman</a>
                     <a class="dropdown-item" href="@Url.Action("Index","Positions")"><i class="fas fa-fw fa-briefcase"></i> Pozisyon</a>
                 </div>
@@ -87,7 +89,7 @@
                     <span>İzin Yönetimi</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    
+
                     <a class="dropdown-item" href="@Url.Action("Index","Permissions")">İzinler</a>
                     <hr />
                     <h6 class="dropdown-header">İzin Ayarlar</h6>
@@ -107,7 +109,7 @@
                     <span>Ayarlar</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    
+
                     <a class="dropdown-item" href="@Url.Action("Index","Certificates")"><i class="fas fa-fw fa-certificate"></i>  Sertifika</a>
                     <hr />
                     <a class="dropdown-item" href="@Url.Action("Index","Countries")">Ülke</a>
@@ -116,9 +118,9 @@
 
 
                     @*<div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Other Pages:</h6>
-        <a class="dropdown-item" href="404.html">404 Page</a>
-        <a class="dropdown-item" href="blank.html">Blank Page</a>*@
+                        <h6 class="dropdown-header">Other Pages:</h6>
+                        <a class="dropdown-item" href="404.html">404 Page</a>
+                        <a class="dropdown-item" href="blank.html">Blank Page</a>*@
                 </div>
             </li>
 
@@ -128,10 +130,10 @@
 
             <div class="container-fluid">
 
-               
 
-                
-               
+
+
+
 
             </div>
             <!-- /.container-fluid -->
@@ -195,6 +197,18 @@
     <!-- Demo scripts for this page-->
     <script src="/js/demo/datatables-demo.js"></script>
     <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/datepicker.js"></script>
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $('.date').datepicker({ //# ile id üzerinden yaparsanız yanlızca bir input çalışır
+                    format: "dd.mm.yyyy" //dd-mm-yyyy
+                });
+
+            });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 
