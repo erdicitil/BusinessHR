@@ -81,13 +81,9 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "İşten Ayrılış Tarihi")]
         public DateTime? CompanyWorkEndDate { get; set; }
         
-        [Display(Name = "Maaşı")]
+        
 
-        public Guid? SalaryId { get; set; }
-        
-        
-        [Display(Name = "Maaş Miktarı")]
-        public string SalaryPaid { get; set; }
+       
         [Display(Name = "İzin")]
         public Guid? PermissionId { get; set; }
         

@@ -244,12 +244,14 @@
     <Content Include="css\bootstrap\js\popper.js" />
     <Content Include="css\bootstrap\js\popper.min.js" />
     <Content Include="css\bootstrap\js\tooltip.js" />
+    <Content Include="css\datetimepicker.css" />
     <Content Include="css\sb-admin.css" />
     <Content Include="css\sb-admin.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\datetimepicker.js" />
     <Content Include="js\demo\chart-area-demo.js" />
     <Content Include="js\demo\chart-bar-demo.js" />
     <Content Include="js\demo\chart-pie-demo.js" />

@@ -54,7 +54,6 @@ namespace BusinessHR.Admin
 
             cfg.CreateMap<Salary, SalaryViewModel>().ForMember(
                 dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FullName)).ReverseMap().ForMember(
-                dest => dest.Employees, opt => opt.Ignore()).ForMember(
                 dest => dest.Employee, opt => opt.Ignore());
 
 
@@ -80,12 +79,10 @@ namespace BusinessHR.Admin
                 dest => dest.PositionName, opt => opt.MapFrom(src => src.Position.Name)).ForMember(
                 dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name)).ForMember(
                 dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name)).ForMember(
-                dest => dest.RegionName, opt => opt.MapFrom(src => src.Region.Name)).ForMember(
-                dest => dest.SalaryPaid, opt => opt.MapFrom(src => src.Salary.ToplamOdenen)).ReverseMap().ForMember(
+                dest => dest.RegionName, opt => opt.MapFrom(src => src.Region.Name)).ReverseMap().ForMember(
                 dest => dest.Certificate, opt => opt.Ignore()).ForMember(
                 dest => dest.Department, opt => opt.Ignore()).ForMember(
                 dest => dest.Position, opt => opt.Ignore()).ForMember(
-                dest => dest.Salary, opt => opt.Ignore()).ForMember(
                 dest => dest.Country, opt => opt.Ignore()).ForMember(
                 dest => dest.City, opt => opt.Ignore()).ForMember(
                 dest => dest.Region, opt => opt.Ignore()).ForMember(
