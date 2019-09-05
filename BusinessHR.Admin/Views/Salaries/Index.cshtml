@@ -4,122 +4,127 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Salaries")" style="color:black">Maaşlar</a></li>
 
-    </ol>
-    <h4 class="mx-4">Maaşlar</h4>
-    <hr />
-    <p>
-        <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni Maaş</a>
-    </p>
-    
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+
+</ol>
+<h4 class="mx-4">Maaşlar</h4>
+<hr />
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary mx-4">Yeni Maaş</a>
+</p>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SalaryDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BrutMaas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SGKPrim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IssizlikSigortasi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DamgaVergisi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AGI)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KGV)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NetMaas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eklemeler)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Kesintiler)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ToplamOdenen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SalaryStatus)
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.EmployeeName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.SalaryDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.BrutMaas)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.SGKPrim)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IssizlikSigortasi)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DamgaVergisi)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.AGI)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.KGV)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NetMaas)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Eklemeler)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Kesintiler)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ToplamOdenen)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.SalaryStatus)
-                        </th>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalaryDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrutMaas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SGKPrim)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IssizlikSigortasi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DamgaVergisi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AGI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KGV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NetMaas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Eklemeler)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kesintiler)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ToplamOdenen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalaryStatus)
+                        </td>
+
+                        <td nowrap>
+                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+
+
                     </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EmployeeName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SalaryDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BrutMaas)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SGKPrim)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IssizlikSigortasi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DamgaVergisi)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AGI)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KGV)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NetMaas)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Eklemeler)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Kesintiler)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ToplamOdenen)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SalaryStatus)
-                            </td>
-
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-
-
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-        </div>
+                }
+            </tbody>
+        </table>
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
     </div>
+</div>
 
 

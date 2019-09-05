@@ -4,16 +4,24 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personeller</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Edit","Employees")" style="color:black">Düzenle</a></li>
 
+</ol>
 
-@using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<h4 class="mx-3">Personel Düzenle</h4>
+<hr />
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Employee</h4>
-        <hr />
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
@@ -177,18 +185,18 @@
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Geri Dön", "Index")
 </div>
 
 @section Scripts {

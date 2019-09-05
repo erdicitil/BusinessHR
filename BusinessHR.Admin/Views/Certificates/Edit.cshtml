@@ -5,19 +5,19 @@
 @{
     ViewBag.Title = "Edit";
 }
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <i class="fas fa-fw fa-home"></i>
-        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-    </li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Certificates")" style="color:black">Sertifikalar</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Edit","Certificates")" style="color:black">Düzenle</a></li>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <i class="fas fa-fw fa-home"></i>
+            <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+        </li>
+        <li class="breadcrumb-item active"><a href="@Url.Action("Index","Certificates")" style="color:black">Sertifikalar</a></li>
+        <li class="breadcrumb-item active"><a href="@Url.Action("Edit","Certificates")" style="color:black">Düzenle</a></li>
 
-</ol>
+    </ol>
 
-<h4 class="mx-3">Sertifika Düzenle</h4>
-<hr />
-@using (Html.BeginForm())
+    <h4 class="mx-3">Sertifika Düzenle</h4>
+    <hr />
+    @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
