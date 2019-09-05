@@ -5,24 +5,24 @@
 }
 
 <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <i class="fas fa-fw fa-home"></i>
-            <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-        </li>
-        <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personeller</a></li>
-        <li class="breadcrumb-item active"><a href="@Url.Action("Create","Employees")" style="color:black">Oluştur</a></li>
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personel</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Create","Employees")" style="color:black">Oluştur</a></li>
 
-    </ol>
-    <h4 class="mx-3">Personel Oluştur</h4>
+</ol>
+<h4 class="mx-3">Personel Oluştur</h4>
 
 
-@using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        
-        
+
+    <div class="form-horizontal mx-3">
+
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -59,8 +59,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })*@
+                @Html.HiddenFor(model => model.DateOfBirth)
+                <input type="text" class="form-control date" />
+                
             </div>
         </div>
 
@@ -99,7 +102,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DepartmentId, "DepartmentId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("DepartmentId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("DepartmentId", null, "Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -107,7 +110,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PositionId, "PositionId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("PositionId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("PositionId", null, "Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -123,31 +126,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyWorkStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyWorkStartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CompanyWorkStartDate, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CompanyWorkStartDate)
+                <input type="text" class="form-control date" />
+                @*@Html.ValidationMessageFor(model => model.CompanyWorkStartDate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyWorkEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyWorkEndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CompanyWorkEndDate, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CompanyWorkEndDate)
+                <input type="text" class="form-control date" />
+                @*@Html.ValidationMessageFor(model => model.CompanyWorkEndDate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SalaryId, "SalaryId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("SalaryId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SalaryId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.CertificateId, "CertificateId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CertificateId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CertificateId", null, "Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CertificateId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -155,7 +154,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CountryId, "CountryId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CountryId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CountryId", null, "Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -163,7 +162,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CityId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CityId", null, "Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -171,7 +170,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RegionId, "RegionId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RegionId", null,"Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("RegionId", null, "Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -184,20 +183,17 @@
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" /> |
+                @Html.ActionLink("Geri Dön", "Index")
             </div>
         </div>
     </div>
+    
 }
-
-<div>
-    @Html.ActionLink("Geri Dön", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

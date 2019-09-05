@@ -25,9 +25,9 @@ namespace BusinessHR.Admin.Controllers
         private readonly ICountryService countryService;
         private readonly IPositionService positionService;
         private readonly IRegionService regionService;
-        private readonly ISalaryService salaryService;
+        
 
-        public EmployeesController(IEmployeeService employeeService, IDepartmentService departmentService, ICertificateService certificateService, ICityService cityService, ICountryService countryService, IPositionService positionService, IRegionService regionService, ISalaryService salaryService)
+        public EmployeesController(IEmployeeService employeeService, IDepartmentService departmentService, ICertificateService certificateService, ICityService cityService, ICountryService countryService, IPositionService positionService, IRegionService regionService)
         {
             this.employeeService = employeeService;
             this.departmentService = departmentService;
@@ -36,7 +36,7 @@ namespace BusinessHR.Admin.Controllers
             this.countryService = countryService;
             this.positionService = positionService;
             this.regionService = regionService;
-            this.salaryService = salaryService;
+            
 
 
         }
@@ -72,7 +72,7 @@ namespace BusinessHR.Admin.Controllers
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name");
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name");
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
-            ViewBag.SalaryId = new SelectList(salaryService.GetAll(), "Id", "Durum");
+            
             return View();
         }
 
@@ -111,7 +111,7 @@ namespace BusinessHR.Admin.Controllers
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", employee.DepartmentId);
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name", employee.PositionId);
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", employee.RegionId);
-            ViewBag.SalaryId = new SelectList(salaryService.GetAll(), "Id", "Durum", employee.SalaryId);
+            
             return View(employee);
         }
 
@@ -133,7 +133,7 @@ namespace BusinessHR.Admin.Controllers
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", employee.DepartmentId);
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name", employee.PositionId);
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", employee.RegionId);
-            ViewBag.SalaryId = new SelectList(salaryService.GetAll(), "Id", "Durum", employee.SalaryId);
+            
             return View(employee);
         }
 
@@ -172,7 +172,7 @@ namespace BusinessHR.Admin.Controllers
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", employee.DepartmentId);
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name", employee.PositionId);
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", employee.RegionId);
-            ViewBag.SalaryId = new SelectList(salaryService.GetAll(), "Id", "Durum", employee.SalaryId);
+            
             return View(employee);
         }
 

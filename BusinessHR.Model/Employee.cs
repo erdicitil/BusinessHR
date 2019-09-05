@@ -24,10 +24,9 @@ namespace BusinessHR.Model
         public Guid? PositionId { get; set; }
         public virtual Position Position { get; set; }
         public string Title { get; set; }
-        public DateTime CompanyWorkStartDate { get; set; }
+        public DateTime? CompanyWorkStartDate { get; set; }
         public DateTime? CompanyWorkEndDate { get; set; }
-        public Guid? SalaryId { get; set; }
-        public virtual Salary Salary { get; set; }
+        
         public virtual ICollection<Permission> Permissions { get; set; }
         public virtual ICollection<Salary> Salaries { get; set; }
         public Guid? CertificateId { get; set; }

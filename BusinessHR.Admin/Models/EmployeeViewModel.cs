@@ -25,10 +25,10 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Fotoğraf")]
         public string Photo { get; set; }
         [Display(Name = "Cinsiyet")]
-        [Required]
+        
         public Gender Gender { get; set; }
         [Display(Name = "Doğum Tarihi")]
-        [Required]
+        
         public DateTime DateOfBirth { get; set; }
         [MaxLength(11)]
         [Required]
@@ -75,19 +75,15 @@ namespace BusinessHR.Admin.Models
         public WorkType WorkType { get; set; }
 
         [Display(Name = "İşe Başlangıç Tarihi")]
-        [Required]
-        public DateTime CompanyWorkStartDate { get; set; }
+        
+        public DateTime? CompanyWorkStartDate { get; set; }
 
         [Display(Name = "İşten Ayrılış Tarihi")]
         public DateTime? CompanyWorkEndDate { get; set; }
         
-        [Display(Name = "Maaşı")]
+        
 
-        public Guid? SalaryId { get; set; }
-        
-        
-        [Display(Name = "Maaş Miktarı")]
-        public string SalaryPaid { get; set; }
+       
         [Display(Name = "İzin")]
         public Guid? PermissionId { get; set; }
         
