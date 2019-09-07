@@ -13,7 +13,7 @@ namespace BusinessHR.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201909042142007_InitialCreate"; }
+            get { return "201909071232037_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -11,8 +11,10 @@ namespace BusinessHR.Admin.Models
     {
         public Guid Id { get; set; }
         [Display(Name = "İzin Başlangıç Tarihi")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PermissionStartDate { get; set; }
         [Display(Name = "İzin Bitiş Tarihi")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PermissionEndDate { get; set; }
         [Display(Name = "İzin Süresi")]
         public string PermissionTime { get; set; }

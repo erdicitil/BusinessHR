@@ -27,8 +27,9 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Cinsiyet")]
         
         public Gender Gender { get; set; }
+        [DataType(DataType.DateTime)]
         [Display(Name = "Doğum Tarihi")]
-        
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateOfBirth { get; set; }
         [MaxLength(11)]
         [Required]
@@ -75,9 +76,11 @@ namespace BusinessHR.Admin.Models
         public WorkType WorkType { get; set; }
 
         [Display(Name = "İşe Başlangıç Tarihi")]
-        
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? CompanyWorkStartDate { get; set; }
-
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "İşten Ayrılış Tarihi")]
         public DateTime? CompanyWorkEndDate { get; set; }
         
