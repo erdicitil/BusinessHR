@@ -33,7 +33,7 @@ namespace BusinessHR.Admin
 
             cfg.CreateMap<Permission, PermissionViewModel>().ForMember(
                 dest => dest.PermissionTypeName, opt => opt.MapFrom(src => src.PermissionType.Name)).ForMember(
-                dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FirstName + " " + src.Employee.LastName)).ReverseMap().ForMember(
+                dest => dest.EmployeeName, opt => opt.MapFrom(src => src.Employee.FullName)).ReverseMap().ForMember(
                 dest => dest.PermissionType, opt => opt.Ignore()).ForMember(
                 dest => dest.Employee, opt => opt.Ignore());
 
