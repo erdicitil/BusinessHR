@@ -1,14 +1,26 @@
 ﻿@model BusinessHR.Admin.Models.RegionViewModel
+@using BusinessHR.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
+
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Regions")" style="color:black">İlçeler</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Regions")" style="color:black">Sil</a></li>
 
-<h3>Are you sure you want to delete this?</h3>
+</ol>
+<h4 class="mx-3">ilçe Sil</h4>
+
+<h5 class="mx-3">Silmek istediğinize emin misiniz?</h5>
 <div>
-    <h4>Region</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,12 +41,13 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Listeye geri dön", "Index")
         </div>
     }
 </div>

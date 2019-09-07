@@ -46,6 +46,7 @@ namespace BusinessHR.Data.Migrations
                         Title = c.String(nullable: false, maxLength: 4000),
                         CompanyWorkStartDate = c.DateTime(nullable: false),
                         CompanyWorkEndDate = c.DateTime(),
+                        SalaryId = c.Guid(),
                         CertificateId = c.Guid(),
                         CountryId = c.Guid(),
                         CityId = c.Guid(),
@@ -70,8 +71,10 @@ namespace BusinessHR.Data.Migrations
                 .ForeignKey("dbo.Departments", t => t.DepartmentId)
                 .ForeignKey("dbo.Positions", t => t.PositionId)
                 .ForeignKey("dbo.Regions", t => t.RegionId)
+                .ForeignKey("dbo.Salaries", t => t.SalaryId)
                 .Index(t => t.DepartmentId)
                 .Index(t => t.PositionId)
+                .Index(t => t.SalaryId)
                 .Index(t => t.CertificateId)
                 .Index(t => t.CountryId)
                 .Index(t => t.CityId)
@@ -378,6 +381,7 @@ namespace BusinessHR.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Employees", "SalaryId", "dbo.Salaries");
             DropForeignKey("dbo.Salaries", "EmployeeId", "dbo.Employees");
             DropForeignKey("dbo.Employees", "RegionId", "dbo.Regions");
             DropForeignKey("dbo.Employees", "PositionId", "dbo.Positions");
@@ -414,6 +418,7 @@ namespace BusinessHR.Data.Migrations
             DropIndex("dbo.Employees", new[] { "CityId" });
             DropIndex("dbo.Employees", new[] { "CountryId" });
             DropIndex("dbo.Employees", new[] { "CertificateId" });
+            DropIndex("dbo.Employees", new[] { "SalaryId" });
             DropIndex("dbo.Employees", new[] { "PositionId" });
             DropIndex("dbo.Employees", new[] { "DepartmentId" });
             DropTable("dbo.AspNetUserLogins");
