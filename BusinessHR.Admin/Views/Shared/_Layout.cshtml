@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr-TR">
 
 <head>
 
@@ -197,20 +197,23 @@
     <!-- Demo scripts for this page-->
     <script src="/js/demo/datatables-demo.js"></script>
     <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/jquery.js"></script>
-    <script src="/js/datepicker.js"></script>
+    @*<script src="/js/jquery.js"></script>
+    <script src="/js/datepicker.js"></script>*@
     <script type="text/javascript">
 
             $(document).ready(function () {
 
-                $('.date').datepicker({ //# ile id üzerinden yaparsanız yanlızca bir input çalışır
+                $('.date').datepicker({
+                    format:'dd/mm/yyyy',
                     
                 });
 
             });
     </script>
-    
+
     @RenderSection("scripts", required: false)
+    <script src="/js/jquery.js"></script>
+    <script src="/js/datepicker.js"></script>
 </body>
 
 </html>

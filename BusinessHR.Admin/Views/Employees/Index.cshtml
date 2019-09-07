@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<BusinessHR.Admin.Models.EmployeeViewModel>
-
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Index";
 }
@@ -28,7 +28,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.FirstName) @Html.DisplayNameFor(model => model.LastName)
                     </th>
-                    
+
                     <th>
                         @Html.DisplayNameFor(model => model.DepartmentName)
                     </th>
@@ -42,30 +42,30 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
+                    <tr>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdentityNumber)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdentityNumber)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DepartmentName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PositionName)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DepartmentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionName)
+                        </td>
 
-                    <td nowrap>
-                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
-                        @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
-                        @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                    </td>
+                        <td nowrap>
+                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
 
-                </tr>
+                    </tr>
                 }
             </tbody>
         </table>
