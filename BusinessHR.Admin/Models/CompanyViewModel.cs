@@ -21,11 +21,11 @@ namespace BusinessHR.Admin.Models
         [Display(Name = "Adres")]
         public string Address { get; set; }
         [Display(Name = "Ülke")]
-        public Guid CountryId { get; set; }
+        public Guid? CountryId { get; set; }
         [Display(Name = "Ülke Adı")]
         public string CountryName { get; set; }
         [Display(Name = "Şehir")]
-        public Guid CityId { get; set; }
+        public Guid? CityId { get; set; }
         [Display(Name = "Şehir Adı")]
         public string CityName { get; set; }
         [Display(Name = "İlçe")]
