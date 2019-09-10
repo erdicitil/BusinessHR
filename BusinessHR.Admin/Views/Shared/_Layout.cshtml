@@ -21,7 +21,8 @@
     <link href="/css/sb-admin.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/datepicker.css">
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    @Scripts.Render("~/Scripts/moment.js")
 </head>
 
 <body id="page-top">
@@ -189,7 +190,7 @@
     <!-- Page level plugin JavaScript-->
     <script src="/vendor/chart.js/Chart.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin.min.js"></script>
@@ -197,23 +198,35 @@
     <!-- Demo scripts for this page-->
     <script src="/js/demo/datatables-demo.js"></script>
     <script src="/js/demo/chart-area-demo.js"></script>
-    @*<script src="/js/jquery.js"></script>
-    <script src="/js/datepicker.js"></script>*@
-    <script type="text/javascript">
-
-            $(document).ready(function () {
-
-                $('.date').datepicker({
-                    format:'dd/mm/yyyy',
-                    
-                });
-
-            });
-    </script>
+   
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/js/jquery.validate.date.js"></script>
 
     @RenderSection("scripts", required: false)
-    <script src="/js/jquery.js"></script>
-    <script src="/js/datepicker.js"></script>
+    <script>
+
+    $(document).ready(function () {
+        $('.date').datepicker({
+            dateFormat: "dd/mm/yy",
+            firstDay: 1,
+            showStatus: true,
+            showWeeks: true,
+            currentText: 'Now',
+            autoSize: true,
+            gotoCurrent: true,
+            showAnim: 'blind',
+            highlightWeek: true,
+            dayNames: ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi" ],
+            dayNamesMin: [ "Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct" ],
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            monthNamesShort: [ "Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara" ]
+        });
+    });
+
+
+    </script>
 </body>
 
 </html>

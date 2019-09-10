@@ -46,6 +46,7 @@
             @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.Photo)
+                
                 <input type="file" name="Upload" id="Upload" class="form-control" />
             </div>
         </div>
@@ -60,11 +61,10 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+           
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfBirth, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control date" } })
+                @Html.TextBoxFor(m => m.DateOfBirth, "{0:dd/MM/yyyy}", htmlAttributes: new { @class = "form-control date" })
                 @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
-
-
             </div>
         </div>
 
@@ -127,7 +127,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyWorkStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyWorkStartDate, "{0:dd.MM.yyyy}", new { htmlAttributes = new { @class = "form-control date" } })
+                @Html.TextBoxFor(m => m.CompanyWorkStartDate, "{0:dd/MM/yyyy}", htmlAttributes: new { @class = "form-control date" })
                 @Html.ValidationMessageFor(model => model.CompanyWorkStartDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -135,7 +135,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyWorkEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyWorkEndDate, new { htmlAttributes = new { @class = "form-control date" } })
+                @Html.TextBoxFor(model => model.CompanyWorkEndDate, "{0:dd/MM/yyyy}", htmlAttributes: new { @class = "form-control date" })
                 @Html.ValidationMessageFor(model => model.CompanyWorkEndDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -191,7 +191,7 @@
             </div>
         </div>
     </div>
-
+   
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
