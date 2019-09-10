@@ -1,4 +1,5 @@
 ﻿@model BusinessHR.Admin.Models.CompanyViewModel
+@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Create";
@@ -21,7 +22,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal mx-3">
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -51,7 +52,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CountryId, "Ülke", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CountryId", null, "Seçiniz" , htmlAttributes: new { @class = "form-control", onchange = "LoadCities(this)" })
                 @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CityId, "Şehir", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CityId", null, "Seçiniz" , htmlAttributes: new { @class = "form-control", onchange = "LoadRegions(this)" })
                 @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RegionId, "İlçe", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("RegionId", null, "Seçiniz" , htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -86,4 +87,35 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        function LoadCities(countrySelect) {
+            var selectedCountryId = $(countrySelect).val();
+            $("#CityId").empty();
+            $("#CityId").append('<option value="">Şehir seçiniz</option>');
+            $.post("@Url.Action("GetCities")", { countryId: selectedCountryId }, function (data) {
+                $.each(data, function (index, value) {
+                    $("#CityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                });
+                LoadRegions($("#CityId"));
+            });
+        }
+
+        function LoadRegions(citySelect) {
+            var selectedCityId = $(citySelect).val();
+            $("#RegionId").empty();
+            $("#RegionId").append('<option value="">İlçe seçiniz</option>');
+            $.post("@Url.Action("GetRegions")", { cityId: selectedCityId }, function (data) {
+
+                $.each(data, function (index, value) {
+                    $("#RegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                });
+            });
+        }
+
+    </script>
+
+
+
+
 }

@@ -35,6 +35,18 @@ namespace BusinessHR.Admin.Controllers
             var companies = Mapper.Map<IEnumerable<CompanyViewModel>>(companyService.GetAll());
             return View(companies.ToList());
         }
+        [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
+            return Json(cities);
+        }
+        [HttpPost]
+        public ActionResult GetRegions(Guid cityId)
+        {
+            var region = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAllByCityId(cityId));
+            return Json(region);
+        }
 
         // GET: Companies/Details/5
         public ActionResult Details(Guid? id)
@@ -54,9 +66,9 @@ namespace BusinessHR.Admin.Controllers
         // GET: Companies/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
             return View();
         }
 
@@ -74,9 +86,9 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", company.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(company.CountryId ?? Guid.NewGuid()), "Id", "Name", company.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.CountryId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.RegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(company.CityId ?? Guid.NewGuid()), "Id", "Name",  company.RegionId);
             return View(company);
         }
 
@@ -92,9 +104,9 @@ namespace BusinessHR.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", company.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(company.CountryId ?? Guid.NewGuid()), "Id", "Name", company.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.CountryId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.RegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(company.CityId ?? Guid.NewGuid()), "Id", "Name", company.RegionId);
             return View(company);
         }
 
@@ -111,9 +123,9 @@ namespace BusinessHR.Admin.Controllers
                 companyService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", company.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(company.CountryId ?? Guid.NewGuid()), "Id", "Name", company.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.CountryId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.RegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(company.CityId ?? Guid.NewGuid()), "Id", "Name", company.RegionId);
             return View(company);
         }
 
