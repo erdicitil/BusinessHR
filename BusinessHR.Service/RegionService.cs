@@ -40,10 +40,10 @@ namespace BusinessHR.Service
         {
             return regionRepository.GetAll();
         }
-        //public IEnumerable<Region> GetAllByCityId(Guid cityId)
-        //{
-        //    return regionRepository.GetAll(x => x.CityId == cityId, o => o.Name, false);
-        //}
+        public IEnumerable<Region> GetAllByCityId(Guid cityId)
+        {
+            return regionRepository.GetAll(x => x.CityId == cityId, o => o.Name, false);
+        }
 
         public void Insert(Region region)
         {
