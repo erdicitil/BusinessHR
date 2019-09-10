@@ -98,7 +98,7 @@ namespace BusinessHR.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                
+               
                 try
                 {
                     employee.Photo = UploadFile(upload);
@@ -222,7 +222,7 @@ namespace BusinessHR.Admin.Controllers
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".gif" || extension == ".png")
                 {
                     //uzantı doğruysa dosyanın yükleneceği Uploads dizini var mı kontrol et.
-                    if (Directory.Exists(Server.MapPath("~/Uploads")))
+                    if (Directory.Exists(Server.MapPath("~/Uploads/")))
                     {
                         //dosya adındaki geçersiz karakterleri düzelt
                         string fileName = upload.FileName.ToLower();
@@ -242,7 +242,7 @@ namespace BusinessHR.Admin.Controllers
                         //aynı isimde dosya olabilir diye dosya adının önüne zaman pulu ekliyoruz.
                         fileName = DateTime.Now.Ticks.ToString() + fileName;
                         //dosyayı Uploads dizinine yükle
-                        upload.SaveAs(Path.Combine(Server.MapPath("~/Uploads"), fileName));
+                        upload.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
                         //yüklenen dosyanın adını geri döndür.
                         return fileName;
                     }
