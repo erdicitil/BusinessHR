@@ -60,7 +60,7 @@ namespace BusinessHR.Service
     public interface IRegionService
     {
         IEnumerable<Region> GetAll();
-        //IEnumerable<Region> GetAllByCityId(Guid cityId);
+        IEnumerable<Region> GetAllByCityId(Guid cityId);
         Region Get(Guid id);
         void Insert(Region region);
         void Update(Region region);
