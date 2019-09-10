@@ -47,7 +47,18 @@ namespace BusinessHR.Admin.Controllers
             var employee = Mapper.Map<IEnumerable<EmployeeViewModel>>(employeeService.GetAll());
             return View(employee);
         }
-
+        [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
+            return Json(cities);
+        }
+        [HttpPost]
+        public ActionResult GetRegions(Guid cityId)
+        {
+            var region = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAllByCityId(cityId));
+            return Json(region);
+        }
         // GET: Employees/Details/5
         public ActionResult Details(Guid? id)
         {
@@ -67,12 +78,12 @@ namespace BusinessHR.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CertificateId = new SelectList(certificateService.GetAll(), "Id", "Name");
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name");
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name");
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
-            
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
+
             return View();
         }
 
@@ -106,12 +117,12 @@ namespace BusinessHR.Admin.Controllers
 
 
             ViewBag.CertificateId = new SelectList(certificateService.GetAll(), "Id", "Name", employee.CertificateId);
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", employee.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(employee.CountryId ?? Guid.NewGuid()), "Id", "Name", employee.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", employee.CountryId);
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", employee.DepartmentId);
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name", employee.PositionId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", employee.RegionId);
-            
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(employee.CityId ?? Guid.NewGuid()), "Id", "Name", employee.RegionId);
+
             return View(employee);
         }
 
@@ -128,12 +139,12 @@ namespace BusinessHR.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.CertificateId = new SelectList(certificateService.GetAll(), "Id", "Name", employee.CertificateId);
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", employee.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(employee.CountryId ?? Guid.NewGuid()), "Id", "Name", employee.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", employee.CountryId);
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", employee.DepartmentId);
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name", employee.PositionId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", employee.RegionId);
-            
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(employee.CityId ?? Guid.NewGuid()), "Id", "Name", employee.RegionId);
+
             return View(employee);
         }
 
@@ -167,12 +178,12 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CertificateId = new SelectList(certificateService.GetAll(), "Id", "Name", employee.CertificateId);
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", employee.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(employee.CountryId ?? Guid.NewGuid()), "Id", "Name", employee.CityId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", employee.CountryId);
             ViewBag.DepartmentId = new SelectList(departmentService.GetAll(), "Id", "Name", employee.DepartmentId);
             ViewBag.PositionId = new SelectList(positionService.GetAll(), "Id", "Name", employee.PositionId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", employee.RegionId);
-            
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(employee.CityId ?? Guid.NewGuid()), "Id", "Name", employee.RegionId);
+
             return View(employee);
         }
 
