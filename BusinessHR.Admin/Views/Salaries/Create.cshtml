@@ -10,13 +10,13 @@
         <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
     </li>
     <li class="breadcrumb-item active"><a href="@Url.Action("Index","Salaries")" style="color:black">Maaş</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Create","Salaires")" style="color:black">Maaş</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Create","Salaires")" style="color:black">Oluştur</a></li>
 
 </ol>
 <h4 class="mx-3">Maaş Oluştur</h4>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Salaries", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SalaryDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SalaryDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.SalaryDate,"{0:dd/MM/yyyy}", htmlAttributes : new { @class = "form-control date" } )
                 @Html.ValidationMessageFor(model => model.SalaryDate, "", new { @class = "text-danger" })
             </div>
         </div>

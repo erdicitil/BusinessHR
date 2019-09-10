@@ -19,11 +19,15 @@ namespace BusinessHR.Admin.Controllers
     {
         private readonly IPermissionService permissionService;
         private readonly IPermissionTypeService permissionTypeService;
+        private readonly IEmployeeService employeeService;
 
-        public PermissionsController(IPermissionService permissionService, IPermissionTypeService permissionTypeService)
+
+        public PermissionsController(IPermissionService permissionService, IPermissionTypeService permissionTypeService,IEmployeeService employeeService)
+
         {
             this.permissionService = permissionService;
             this.permissionTypeService = permissionTypeService;
+            this.employeeService = employeeService;
         }
 
         // GET: Permissions
@@ -52,6 +56,7 @@ namespace BusinessHR.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name");
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FullName");
             return View();
         }
 
@@ -69,6 +74,7 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name", permission.PermissionTypeId);
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FullName", permission.EmployeeId);
             return View(permission);
         }
 
@@ -85,6 +91,7 @@ namespace BusinessHR.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name", permission.PermissionTypeId);
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FullName", permission.EmployeeId);
             return View(permission);
         }
 
@@ -102,6 +109,7 @@ namespace BusinessHR.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PermissionTypeId = new SelectList(permissionTypeService.GetAll(), "Id", "Name", permission.PermissionTypeId);
+            ViewBag.EmployeeId = new SelectList(employeeService.GetAll(), "Id", "FullName", permission.EmployeeId);
             return View(permission);
         }
 
