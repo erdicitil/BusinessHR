@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="/css/datepicker.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    
     @Scripts.Render("~/Scripts/moment.js")
 </head>
 
@@ -91,10 +92,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 
-                    <a class="dropdown-item" href="@Url.Action("Index","Permissions")">İzinler</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","Permissions")"><i class="fas fa-fw fa-bullseye"></i>  İzinler</a>
                     <hr />
                     <h6 class="dropdown-header">İzin Ayarlar</h6>
-                    <a class="dropdown-item" href="@Url.Action("Index","PermissionTypes")">İzin Türleri</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","PermissionTypes")"><i class="fas fa-fw fa-tasks"></i>  İzin Türleri</a>
                 </div>
 
             <li class="nav-item">
@@ -113,9 +114,9 @@
 
                     <a class="dropdown-item" href="@Url.Action("Index","Certificates")"><i class="fas fa-fw fa-certificate"></i>  Sertifika</a>
                     <hr />
-                    <a class="dropdown-item" href="@Url.Action("Index","Countries")">Ülke</a>
-                    <a class="dropdown-item" href="@Url.Action("Index","Cities")">Şehir</a>
-                    <a class="dropdown-item" href="@Url.Action("Index","Regions")">İlçe</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","Countries")"><i class="fas fa-fw fa-flag"></i>  Ülke</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","Cities")"><i class="fas fa-fw fa-city"></i>  Şehir</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","Regions")"><i class="fas fa-fw fa-map"></i>  İlçe</a>
 
 
                     @*<div class="dropdown-divider"></div>

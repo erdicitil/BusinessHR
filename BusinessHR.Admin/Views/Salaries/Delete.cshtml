@@ -6,13 +6,13 @@
     ViewBag.Title = "Delete";
 }
 
-<<ol class="breadcrumb">
+<ol class="breadcrumb">
     <li class="breadcrumb-item">
         <i class="fas fa-fw fa-home"></i>
         <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
     </li>
     <li class="breadcrumb-item active"><a href="@Url.Action("Index","Salaries")" style="color:black">Maaşlar</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Salaries")" style="color:black">Sil</a></li>
+    <li class="breadcrumb-item active"><a href="#" style="color:black">Sil</a></li>
 
 </ol>
 <h4 class="mx-3">Maaş Sil</h4>
@@ -21,7 +21,7 @@
 <div>
 
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal mx-3">
         <dt>
             @Html.DisplayNameFor(model => model.EmployeeName)
         </dt>
@@ -123,7 +123,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SalaryStatus)
+            @Model.SalaryStatus.GetDisplayName()
         </dd>
 
 
@@ -134,7 +134,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-actions no-color mx-3">
             <input type="submit" value="Sil" class="btn btn-danger" /> |
             @Html.ActionLink("Listeye geri dön", "Index")
         </div>

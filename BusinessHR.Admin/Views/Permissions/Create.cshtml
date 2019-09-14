@@ -3,7 +3,14 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<style>
+    .color 
+    {
+     color : red;
+     font-size:small;
+     font-style: italic
+    }
+</style>
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
@@ -24,8 +31,31 @@
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <span class="color mx-3">(*) Girilmesi zorunlu alanlar</span>
+    
+    <div class="form-group">
+        <br />
+        @Html.LabelFor(model => model.EmployeeId, "İzin Alan Personel", htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <span class="color mx-3">(*)</span>
+        <div class="col-md-10">
+            @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PermissionTypeId, "İzin Türü", htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <span class="color mx-3">(*)</span>
+        <div class="col-md-10">
+            @Html.DropDownList("PermissionTypeId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PermissionTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(model => model.PermissionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <span class="color mx-3">(*)</span>
         <div class="col-md-10">
             @Html.EditorFor(model => model.PermissionStartDate, new { htmlAttributes = new { @class = "form-control date " } })
             @Html.ValidationMessageFor(model => model.PermissionStartDate, "", new { @class = "text-danger" })
@@ -34,6 +64,8 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.PermissionEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <span class="color mx-3">(*)</span>
         <div class="col-md-10">
             @Html.EditorFor(model => model.PermissionEndDate, new { htmlAttributes = new { @class = "form-control date " } })
             @Html.ValidationMessageFor(model => model.PermissionEndDate, "", new { @class = "text-danger" })
@@ -42,26 +74,16 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.PermissionTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <br />
+        <span class="color mx-3">(*)</span>
         <div class="col-md-10">
             @Html.EditorFor(model => model.PermissionTime, new { htmlAttributes = new { @class = "form-control " } })
             @Html.ValidationMessageFor(model => model.PermissionTime, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.PermissionTypeId, "PermissionTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("PermissionTypeId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.PermissionTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
+
+
 
 
     <div class="form-group">

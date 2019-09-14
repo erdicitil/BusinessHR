@@ -1,105 +1,61 @@
 ﻿@model BusinessHR.Admin.Models.EmployeeViewModel
-
+@using BusinessHR.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Delete";
 }
 
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <i class="fas fa-fw fa-home"></i>
-            <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
-        </li>
-        <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personeller</a></li>
-        <li class="breadcrumb-item active"><a href="@Url.Action("Details","Employees")" style="color:black">Sil</a></li>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <i class="fas fa-fw fa-home"></i>
+        <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
+    </li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Index","Employees")" style="color:black">Personeller</a></li>
+    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Employees")" style="color:black">Sil</a></li>
 
-    </ol>
-    <h4 class="mx-3">Personel Sil</h4>
+</ol>
+<h4 class="mx-3">Personel Sil</h4>
 
-    <h5 class="mx-3">Silmek istediğinize emin misiniz?</h5>
-    <div>
+<h5 class="mx-3">Silmek istediğinize emin misiniz?</h5>
+<div>
 
     <hr />
     <dl class="dl-horizontal mx-3">
         <dt>
-            @Html.DisplayNameFor(model => model.CertificateName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CertificateName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CityName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CityName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CountryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PositionName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PositionName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RegionName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RegionName)
-        </dd>
-
-        
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Photo)
+
         </dt>
 
         <dd>
             <img src="@Url.Content("~/Uploads/" + Model.Photo)" height="200" width="300" style="border:solid" />
+
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentityNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentityNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName) @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Gender)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @Model.Gender.GetDisplayName()
+
         </dd>
 
         <dt>
@@ -110,13 +66,7 @@
             @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IdentityNumber)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdentityNumber)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Mobile)
@@ -142,14 +92,24 @@
             @Html.DisplayFor(model => model.Address)
         </dd>
 
+
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.DepartmentName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.DepartmentName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CompanyWorkStartDate)
         </dt>
@@ -171,7 +131,51 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorkStatus)
+            @Model.WorkStatus.GetDisplayName()
+
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegionName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CertificateName)
+        </dt>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.CertificateName)
         </dd>
 
 
@@ -181,7 +185,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-actions no-color mx-3">
             <input type="submit" value="Sil" class="btn btn-danger" /> |
             @Html.ActionLink("Geri Dön", "Index")
         </div>

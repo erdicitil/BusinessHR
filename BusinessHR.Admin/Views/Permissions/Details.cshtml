@@ -21,6 +21,13 @@
     <hr />
     <dl class="dl-horizontal mx-3">
         <dt>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.PermissionTypeName)
         </dt>
 
@@ -51,18 +58,11 @@
         <dd>
             @Html.DisplayFor(model => model.PermissionTime)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeName)
-        </dd>
 
 
     </dl>
 </div>
-<p>
+<p class="mx-3">
     @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Geri Dön", "Index")
 </p>

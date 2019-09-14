@@ -6,7 +6,7 @@
     ViewBag.Title = "Details";
 }
 
-<<ol class="breadcrumb">
+<ol class="breadcrumb">
     <li class="breadcrumb-item">
         <i class="fas fa-fw fa-home"></i>
         <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
@@ -32,7 +32,7 @@
 
     </dl>
 </div>
-<p>
+<p class="mx-3">
     @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Geri Dön", "Index")
 </p>

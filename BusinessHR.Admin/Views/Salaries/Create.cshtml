@@ -3,7 +3,14 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<style>
+    .color 
+    {
+     color : red;
+     font-size:small;
+     font-style: italic
+    }
+</style>
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
         <i class="fas fa-fw fa-home"></i>
@@ -24,16 +31,33 @@
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <span class="color mx-3">(*) Girilmesi zorunlu alanlar</span>
+        <div class="form-group">
+            <br />
+            
+            @Html.LabelFor(model => model.EmployeeId, "Personel", htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
+            <div class="col-md-10">
+                @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.SalaryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SalaryDate,"{0:dd/MM/yyyy}", htmlAttributes : new { @class = "form-control date" } )
+
+                @Html.TextBoxFor(model => model.SalaryDate, "{0:dd/MM/yyyy}", htmlAttributes: new { @class = "form-control date" })
                 @Html.ValidationMessageFor(model => model.SalaryDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.BrutMaas, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BrutMaas, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BrutMaas, "", new { @class = "text-danger" })
@@ -42,6 +66,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.SGKPrim, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SGKPrim, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SGKPrim, "", new { @class = "text-danger" })
@@ -50,6 +76,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.IssizlikSigortasi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IssizlikSigortasi, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IssizlikSigortasi, "", new { @class = "text-danger" })
@@ -58,6 +86,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.DamgaVergisi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DamgaVergisi, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DamgaVergisi, "", new { @class = "text-danger" })
@@ -66,6 +96,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.AGI, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AGI, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AGI, "", new { @class = "text-danger" })
@@ -74,6 +106,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.KGV, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.KGV, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.KGV, "", new { @class = "text-danger" })
@@ -82,6 +116,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.NetMaas, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NetMaas, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NetMaas, "", new { @class = "text-danger" })
@@ -90,6 +126,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Eklemeler, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*) Maaş eklemesi yoksa 0 giriniz.</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Eklemeler, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Eklemeler, "", new { @class = "text-danger" })
@@ -98,6 +136,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Kesintiler, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*) Maaş kesintisi yoksa 0 giriniz.</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Kesintiler, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Kesintiler, "", new { @class = "text-danger" })
@@ -106,6 +146,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ToplamOdenen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ToplamOdenen, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ToplamOdenen, "", new { @class = "text-danger" })
@@ -114,25 +156,21 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.SalaryStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <span class="color mx-3">(*)</span>
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.SalaryStatus, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SalaryStatus, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
 
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" /> | @Html.ActionLink("Geri Dön", "Index")
+                <input type="submit" value="Kaydet" class="btn btn-primary" /> | @Html.ActionLink("Geri Dön", "Index")
             </div>
         </div>
     </div>

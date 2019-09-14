@@ -13,16 +13,16 @@
         <a href="@Url.Action("Index","Home")" style="color:black">Giriş</a>
     </li>
     <li class="breadcrumb-item active"><a href="@Url.Action("Index","Regions")" style="color:black">İlçeler</a></li>
-    <li class="breadcrumb-item active"><a href="@Url.Action("Details","Regions")" style="color:black">Sil</a></li>
+    <li class="breadcrumb-item active"><a href="#" style="color:black">Sil</a></li>
 
 </ol>
-<h4 class="mx-3">ilçe Sil</h4>
+<h4 class="mx-3">İlçe Sil</h4>
 
 <h5 class="mx-3">Silmek istediğinize emin misiniz?</h5>
 <div>
 
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal mx-3">
         <dt>
             @Html.DisplayNameFor(model => model.CityName)
         </dt>
@@ -45,7 +45,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-actions no-color mx-3">
             <input type="submit" value="Sil" class="btn btn-danger" /> |
             @Html.ActionLink("Listeye geri dön", "Index")
         </div>

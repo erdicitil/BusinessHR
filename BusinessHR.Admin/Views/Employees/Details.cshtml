@@ -22,72 +22,6 @@
     <hr />
     <dl class="dl-horizontal mx-3">
         <dt>
-            @Html.DisplayNameFor(model => model.CertificateName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CertificateName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CityName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CityName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CountryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PositionName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PositionName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RegionName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RegionName)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
 
             @Html.DisplayNameFor(model => model.Photo)
 
@@ -97,6 +31,23 @@
             <img src="@Url.Content("~/Uploads/" + Model.Photo)" height="200" width="300" style="border:solid" />
 
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentityNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentityNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName) @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Gender)
@@ -104,7 +55,7 @@
 
         <dd>
             @Model.Gender.GetDisplayName()
-            
+
         </dd>
 
         <dt>
@@ -115,13 +66,7 @@
             @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IdentityNumber)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdentityNumber)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Mobile)
@@ -147,14 +92,24 @@
             @Html.DisplayFor(model => model.Address)
         </dd>
 
+
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.DepartmentName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.DepartmentName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CompanyWorkStartDate)
         </dt>
@@ -177,10 +132,51 @@
 
         <dd>
             @Model.WorkStatus.GetDisplayName()
-            
+
         </dd>
 
 
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegionName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CertificateName)
+        </dt>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.CertificateName)
+        </dd>
 
     </dl>
 </div>

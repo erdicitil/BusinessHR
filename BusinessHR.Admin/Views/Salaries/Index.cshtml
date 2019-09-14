@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<BusinessHR.Admin.Models.SalaryViewModel>
 
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Index";
 }
@@ -33,34 +34,17 @@
                         @Html.DisplayNameFor(model => model.BrutMaas)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.SGKPrim)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IssizlikSigortasi)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DamgaVergisi)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AGI)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.KGV)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.NetMaas)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Eklemeler)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Kesintiler)
-                    </th>
+                    
                     <th>
                         @Html.DisplayNameFor(model => model.ToplamOdenen)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.SalaryStatus)
+                    </th>
+                    <th>
+                        Eylemler
                     </th>
                 </tr>
             </thead>
@@ -79,35 +63,17 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.BrutMaas)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SGKPrim)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IssizlikSigortasi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DamgaVergisi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AGI)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.KGV)
-                        </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.NetMaas)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Eklemeler)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Kesintiler)
-                        </td>
+                       
                         <td>
                             @Html.DisplayFor(modelItem => item.ToplamOdenen)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SalaryStatus)
+                            
+                            @Html.DisplayFor(modelItem => item.SalaryStatus) 
                         </td>
 
                         <td nowrap>
